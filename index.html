@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Hoang Gia Vi - Data Scientist Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* --- CSS Variables & Reset --- */
         :root {
-            --primary-color: #2563eb; /* Blue */
-            --secondary-color: #1e293b; /* Dark Slate */
-            --bg-color: #f8fafc;
-            --text-color: #334155;
+            --primary-color: #2563eb; /* Màu xanh chủ đạo */
+            --primary-dark: #1d4ed8;
+            --secondary-color: #1e293b; /* Màu chữ tối */
+            --bg-color: #f8fafc; /* Màu nền sáng */
+            --text-light: #64748b; /* Màu chữ xám nhạt */
             --white: #ffffff;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -24,25 +29,57 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth; /* Cuộn trang mượt mà */
+        }
+
         body {
             background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            color: var(--secondary-color);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
         a {
             text-decoration: none;
             color: inherit;
+            transition: var(--transition);
+        }
+
+        /* --- Animations Keyframes --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Class để áp dụng animation khi cuộn tới */
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* --- Header & Nav --- */
         header {
-            background-color: var(--white);
-            box-shadow: var(--shadow);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); /* Hiệu ứng kính mờ */
+            box-shadow: var(--shadow-sm);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: var(--transition);
         }
 
         nav {
@@ -58,7 +95,11 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary-color);
+            display: flex;
+            align-items: center;
         }
+        
+        .logo i { margin-right: 0.5rem; }
 
         .nav-links {
             display: flex;
@@ -67,242 +108,403 @@
 
         .nav-links a {
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            color: var(--secondary-color);
+        }
+
+        .nav-links a i {
+            margin-right: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            transition: var(--transition);
         }
 
         .nav-links a:hover {
             color: var(--primary-color);
         }
 
-        /* --- Hero Section --- */
-        .hero {
-            margin-top: 80px;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
-            text-align: center;
+        .nav-links a:hover i {
+            color: var(--primary-color);
         }
 
+        /* --- Hero Section --- */
+        .hero {
+            margin-top: 70px;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(135deg, #dbeafe 0%, #ffffff 60%, #f0f9ff 100%);
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Áp dụng animation cho Hero */
+        .hero h1 { opacity: 0; animation: fadeInUp 0.8s ease forwards 0.2s; }
+        .hero h2 { opacity: 0; animation: fadeInUp 0.8s ease forwards 0.4s; }
+        .hero p { opacity: 0; animation: fadeInUp 0.8s ease forwards 0.6s; }
+        .social-links { opacity: 0; animation: fadeInUp 0.8s ease forwards 0.8s; }
+
         .hero h1 {
-            font-size: 3rem;
-            color: var(--secondary-color);
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
             margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero h2 {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             color: var(--primary-color);
             font-weight: 500;
             margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            background: #dbeafe;
+            border-radius: 50px;
         }
 
         .hero p {
             max-width: 700px;
-            margin: 0 auto 2rem;
-            color: #64748b;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background-color: var(--primary-color);
-            color: var(--white);
-            border-radius: 50px;
-            font-weight: 600;
-            transition: transform 0.2s, background-color 0.2s;
-        }
-
-        .btn:hover {
-            background-color: #1d4ed8;
-            transform: translateY(-2px);
-        }
-
-        .social-links {
-            margin-top: 2rem;
+            margin: 0 auto 2.5rem;
+            color: var(--text-light);
+            font-size: 1.1rem;
         }
 
         .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--white);
+            color: var(--secondary-color);
             font-size: 1.5rem;
             margin: 0 10px;
-            color: var(--secondary-color);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
         /* --- Sections General --- */
         section {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
-            font-size: 2rem;
-            color: var(--secondary-color);
-            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            font-weight: 700;
             text-align: center;
+            margin-bottom: 3rem;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: var(--primary-color);
-            margin: 10px auto 0;
-            border-radius: 2px;
+        .section-title i {
+            margin-right: 0.75rem;
+            color: var(--primary-color);
         }
 
         /* --- Education --- */
         .education-card {
             background: var(--white);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
             border-left: 5px solid var(--primary-color);
-            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+        
+        .education-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
         }
 
         .edu-header {
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
             flex-wrap: wrap;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
         }
 
-        .edu-title h3 { font-size: 1.25rem; }
-        .edu-title span { color: #64748b; font-size: 0.9rem; }
+        .edu-title h3 { font-size: 1.4rem; margin-bottom: 0.3rem; }
+        .edu-title span { color: var(--text-light); display: block; font-weight: 500;}
+        .edu-title i { color: var(--primary-color); margin-right: 0.5rem; }
+
         .edu-gpa { 
-            background: #dbeafe; 
-            color: var(--primary-color); 
-            padding: 0.25rem 0.75rem; 
-            border-radius: 20px; 
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            padding: 0.5rem 1rem; 
+            border-radius: 50px; 
             font-weight: 600;
-            font-size: 0.9rem;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .edu-achievement {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 1rem;
+        }
+        .edu-achievement i {
+             color: #f59e0b; /* Màu vàng cam cho thành tích */
+             margin-right: 0.75rem;
+             font-size: 1.2rem;
+             margin-top: 0.2rem;
         }
 
-        /* --- Projects (Grid) --- */
+        /* --- Projects (Grid & Cards) --- */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
         }
 
         .project-card {
             background: var(--white);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
             border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
         }
 
         .project-content {
-            padding: 1.5rem;
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        .project-content h3 {
-            margin-bottom: 0.5rem;
-            color: var(--secondary-color);
-        }
-
-        .project-role {
-            font-size: 0.85rem;
-            color: var(--primary-color);
-            font-weight: 600;
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 1rem;
-            display: block;
+        }
+
+        .project-header h3 {
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .project-header h3 i { color: var(--primary-color); margin-right: 0.5rem; font-size: 1.2rem;}
+
+        .project-role-badge {
+            background: #e0e7ff;
+            color: var(--primary-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
 
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: 1rem;
+            margin-top: auto; /* Đẩy xuống dưới cùng */
+            margin-bottom: 1.5rem;
         }
 
         .tech-tag {
             background: #f1f5f9;
-            color: #475569;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
+            color: var(--secondary-color);
+            padding: 0.35rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
         }
+        
+        .tech-tag i { margin-right: 0.3rem; color: var(--text-light); font-size: 0.8rem;}
 
-        .project-link {
-            display: block;
-            margin-top: 1.5rem;
-            text-align: right;
-            color: var(--primary-color);
+        .project-link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 8px;
             font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+            text-align: center;
+        }
+        
+        .project-link-btn i { margin-left: 0.5rem; }
+
+        .project-link-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
         }
 
         /* --- Publications --- */
         .pub-item {
             background: var(--white);
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            border-left: 4px solid #16a34a; /* Green border */
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .pub-item:hover { transform: translateX(5px); box-shadow: var(--shadow-lg); }
+
+        .pub-icon {
+            font-size: 2rem;
+            color: #16a34a;
+            margin-right: 1.5rem;
         }
 
-        .pub-status {
-            color: #16a34a; /* Green */
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-        }
+        .pub-content h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .pub-venue { color: var(--text-light); font-style: italic; margin-bottom: 0.5rem; display: block;}
+        .pub-authors { font-size: 0.95rem; color: var(--secondary-color); }
+        .pub-authors i { color: var(--primary-color); margin-right: 0.3rem;}
 
         /* --- Skills --- */
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .skill-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition);
         }
 
-        .skill-group h3 {
+        .skill-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+        
+        .skill-header { margin-bottom: 1.5rem; }
+        .skill-icon {
+            display: inline-flex;
+            width: 60px; height: 60px;
+            background: #dbeafe; color: var(--primary-color);
+            border-radius: 50%;
+            align-items: center; justify-content: center;
+            font-size: 1.8rem;
             margin-bottom: 1rem;
-            color: var(--secondary-color);
         }
+        .skill-header h3 { font-size: 1.3rem; }
 
         .skill-list {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 0.8rem;
         }
 
         .skill-tag {
             background: var(--white);
-            border: 1px solid #cbd5e1;
+            border: 1px solid #e2e8f0;
             padding: 0.5rem 1rem;
             border-radius: 50px;
             font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        
+        .skill-tag:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: scale(1.05);
         }
 
         /* --- Footer --- */
         footer {
             background-color: var(--secondary-color);
             color: var(--white);
-            padding: 3rem 2rem;
+            padding: 4rem 2rem 2rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: linear-gradient(to right, var(--primary-color), #a855f7, var(--primary-dark));
         }
 
-        .contact-info p {
-            margin: 0.5rem 0;
+        .footer-content h2 { font-size: 2rem; margin-bottom: 2rem; }
+        
+        .contact-items {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.05);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+        
+        .contact-item:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+        .contact-item i { font-size: 1.5rem; color: var(--primary-color); margin-right: 1rem; }
+        .contact-item p { font-weight: 500; }
 
-        .contact-info i {
-            margin-right: 10px;
-            color: var(--primary-color);
-        }
+        .copyright { font-size: 0.9rem; color: #94a3b8; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem;}
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .nav-links { display: none; } /* Simplified for single file demo */
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Đơn giản hóa cho mobile */
             .edu-header { flex-direction: column; gap: 0.5rem; }
+            .contact-items { flex-direction: column; gap: 1rem; align-items: stretch; }
+            .project-header { flex-direction: column; gap: 0.5rem; }
+            .project-role-badge { align-self: flex-start; }
         }
     </style>
 </head>
@@ -310,157 +512,218 @@
 
     <header>
         <nav>
-            <div class="logo">Le Hoang Gia Vi</div>
+            <div class="logo">
+                <i class="fas fa-code"></i> Gia Vi Portfolio
+            </div>
             <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#projects">Projects</a>
-                <a href="#publications">Publications</a>
-                <a href="#skills">Skills</a>
-                <a href="#contact">Contact</a>
+                <a href="#about"><i class="fas fa-user"></i> About</a>
+                <a href="#projects"><i class="fas fa-laptop-code"></i> Projects</a>
+                <a href="#publications"><i class="fas fa-book"></i> Publications</a>
+                <a href="#skills"><i class="fas fa-tools"></i> Skills</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
             </div>
         </nav>
     </header>
 
     <section class="hero">
         <h1>Le Hoang Gia Vi</h1>
-        <h2>Intern Data Scientist</h2>
+        <h2><i class="fas fa-rocket"></i> Intern Data Scientist</h2>
         <p>
-            Final-year Data Science student seeking an internship to apply skills in Machine Learning, 
-            Deep Learning, and Data Analysis. Passionate about solving real-world problems through data. [cite: 5, 6, 7]
+            Final-year Data Science student passionate about Machine Learning, Deep Learning, and solving real-world problems through data-driven insights.
         </p>
         <div class="social-links">
-            <a href="https://github.com/lehoanggiavi" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="mailto:lehoanggiavi21082004@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/lehoanggiavi" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:lehoanggiavi21082004@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="#contact" title="Location"><i class="fas fa-map-marker-alt"></i></a>
         </div>
     </section>
 
-    <section id="about">
-        <h2 class="section-title">Education</h2>
+    <section id="about" class="hidden">
+        <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education & Achievements</h2>
         <div class="education-card">
             <div class="edu-header">
                 <div class="edu-title">
-                    <h3>HUTECH University</h3>
-                    <span>Engineering of Data Science | Sep 2022 - Present [cite: 9, 10, 11, 19]</span>
+                    <h3><i class="fas fa-university"></i> HUTECH University</h3>
+                    <span>Engineering of Data Science | Sep 2022 - Present</span>
                 </div>
-                <div class="edu-gpa">GPA: 3.25 / 4.00 [cite: 12]</div>
+                <div class="edu-gpa"><i class="fas fa-star"></i> GPA: 3.25 / 4.00</div>
             </div>
-            <p><strong>Achievements:</strong> Finalist of Hutech IT Got Talent (2024) - Fall detection AI solution using Camera & CSI signals. [cite: 14, 15]</p>
+            <div class="edu-achievement">
+                 <i class="fas fa-trophy"></i>
+                 <p><strong>Finalist of Hutech IT Got Talent (2024):</strong> Developed a basic AI solution for fall detection using Camera & CSI signals, achieving real-time alerts via email.</p>
+            </div>
         </div>
     </section>
 
-    <section id="projects">
-        <h2 class="section-title">Project Experience</h2>
+    <section id="projects" class="hidden">
+        <h2 class="section-title"><i class="fas fa-project-diagram"></i> Project Experience</h2>
         <div class="project-grid">
             
             <div class="project-card">
                 <div class="project-content">
-                    <h3>DAGPT [cite: 26]</h3>
-                    <span class="project-role">Individual | Aug 2025 - Sep 2025 [cite: 27, 33]</span>
-                    <p>Built a Streamlit-based tool allowing non-technical users to upload CSVs and analyze data using LLM-powered queries. Automated chart generation for EDA. [cite: 31, 32]</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">LLM</span>
-                        <span class="tech-tag">Data Visualization</span>
+                    <div class="project-header">
+                        <h3><i class="fas fa-comments"></i> DAGPT</h3>
+                        <span class="project-role-badge"><i class="fas fa-user"></i> Individual</span>
                     </div>
-                    <a href="https://github.com/lehoanggiavi/dagpt" class="project-link" target="_blank">View on Github <i class="fas fa-arrow-right"></i> [cite: 28]</a>
+                    <p>Built a Streamlit-based tool allowing non-technical users to upload CSV files and analyze data using LLM-powered queries. Automated chart generation for exploratory data analysis (EDA).</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag"><i class="fab fa-python"></i> Python</span>
+                        <span class="tech-tag"><i class="fas fa-chart-bar"></i> Streamlit</span>
+                        <span class="tech-tag"><i class="fas fa-brain"></i> LLM</span>
+                        <span class="tech-tag"><i class="fas fa-database"></i> Data Viz</span>
+                    </div>
+                    <a href="https://github.com/lehoanggiavi/dagpt" class="project-link-btn" target="_blank">
+                        View on Github <i class="fab fa-github"></i>
+                    </a>
                 </div>
             </div>
 
             <div class="project-card">
                 <div class="project-content">
-                    <h3>Smart Class - Emotion Analysis [cite: 34]</h3>
-                    <span class="project-role">Leader | Mar 2025 - Jun 2025 [cite: 34]</span>
-                    <p>Developed an AI system for real-time and video-based emotion recognition in classrooms. Achieved 90% accuracy for emotion classification. [cite: 38, 40, 41]</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Deep Learning</span>
-                        <span class="tech-tag">Computer Vision</span>
-                        <span class="tech-tag">Python</span>
+                    <div class="project-header">
+                        <h3><i class="fas fa-video"></i> Smart Class Emotion</h3>
+                        <span class="project-role-badge"><i class="fas fa-users-cog"></i> Leader</span>
                     </div>
-                    <a href="https://github.com/lehoanggiavi/smart_class" class="project-link" target="_blank">View on Github <i class="fas fa-arrow-right"></i> [cite: 35]</a>
+                    <p>Developed an AI-based emotion recognition system (real-time & video) to assist teachers in monitoring classrooms. Achieved 90% accuracy for classifier emotion.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag"><i class="fab fa-python"></i> Python</span>
+                        <span class="tech-tag"><i class="fas fa-eye"></i> Computer Vision</span>
+                        <span class="tech-tag"><i class="fas fa-network-wired"></i> Deep Learning</span>
+                    </div>
+                    <a href="https://github.com/lehoanggiavi/smart_class" class="project-link-btn" target="_blank">
+                        View on Github <i class="fab fa-github"></i>
+                    </a>
                 </div>
             </div>
 
             <div class="project-card">
                 <div class="project-content">
-                    <h3>Credit Card Fraud Detection [cite: 42]</h3>
-                    <span class="project-role">Leader | Nov 2025 [cite: 43]</span>
-                    <p>Implemented machine & deep learning models optimized for highly imbalanced financial data. Achieved AUC 0.990 and Recall 0.953. [cite: 46, 48]</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Deep Learning</span>
-                        <span class="tech-tag">Imbalanced Data</span>
-                        <span class="tech-tag">Fraud Detection</span>
+                    <div class="project-header">
+                        <h3><i class="fas fa-credit-card"></i> Credit Card Fraud Detect</h3>
+                        <span class="project-role-badge"><i class="fas fa-users-cog"></i> Leader</span>
                     </div>
-                    <a href="https://github.com/lehoanggiavi/cefd" class="project-link" target="_blank">View on Github <i class="fas fa-arrow-right"></i> [cite: 44]</a>
+                    <p>Implemented multiple machine and deep learning models optimized for highly imbalanced financial data. Achieved AUC 0.990 and Recall 0.953.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag"><i class="fas fa-brain"></i> Machine Learning</span>
+                        <span class="tech-tag"><i class="fas fa-balance-scale-right"></i> Imbalanced Data</span>
+                        <span class="tech-tag"><i class="fas fa-shield-alt"></i> Fraud Detection</span>
+                    </div>
+                    <a href="https://github.com/lehoanggiavi/cefd" class="project-link-btn" target="_blank">
+                        View on Github <i class="fab fa-github"></i>
+                    </a>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <section id="publications">
-        <h2 class="section-title">Publications</h2>
+    <section id="publications" class="hidden">
+        <h2 class="section-title"><i class="fas fa-scroll"></i> Paper Publications</h2>
         
         <div class="pub-item">
-            <span class="pub-status">Accepted [cite: 18]</span>
-            <h3>CacaoShield: AI application to identify cocoa diseases from the Cacao Disease data set</h3>
-            <p><em>REV-ECIT 2025</em></p>
-            <p><strong>Authors:</strong> Le Vi, Hoang Vu, NN Quynh Anh, Tien Do [cite: 17, 18]</p>
+            <div class="pub-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="pub-content">
+                <h3>CacaoShield: AI application to identify cocoa diseases from the Cacao Disease data set</h3>
+                <span class="pub-venue">REV-ECIT 2025 (Accepted)</span>
+                <p class="pub-authors"><i class="fas fa-users"></i> Le Vi, Hoang Vu, NN Quynh Anh, Tien Do</p>
+            </div>
         </div>
 
         <div class="pub-item">
-            <span class="pub-status">Accepted [cite: 25]</span>
-            <h3>Factors Influencing Students' Acceptance Of The Safe Exam Browser Tool In Online Exams</h3>
-            <p><em>Based On The Extended Utaut Model (2025)</em></p>
-            <p><strong>Authors:</strong> Le Hoang Gia Vi, Hoang Nguyen Vu, Nguyen Ngoc Quynh Anh, Le Nhat Tung [cite: 22, 24]</p>
+            <div class="pub-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="pub-content">
+                <h3>Factors Influencing Students' Acceptance Of The Safe Exam Browser Tool In Online Exams</h3>
+                <span class="pub-venue">"Đào tạo từ xa-20 năm hình thành và phát triển 2025" (Accepted)</span>
+                <p class="pub-authors"><i class="fas fa-users"></i> Le Hoang Gia Vi, Hoang Nguyen Vu, Nguyen Ngoc Quynh Anh, Le Nhat Tung</p>
+            </div>
         </div>
     </section>
 
-    <section id="skills">
-        <h2 class="section-title">Technical Skills</h2>
+    <section id="skills" class="hidden">
+        <h2 class="section-title"><i class="fas fa-bolt"></i> Technical Skills</h2>
         <div class="skills-container">
-            <div class="skill-group">
-                <h3>Languages & Databases</h3>
+            
+            <div class="skill-card">
+                <div class="skill-header">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <h3>Languages & DB</h3>
+                </div>
                 <div class="skill-list">
-                    <span class="skill-tag">Python (Intermediate) [cite: 55]</span>
-                    <span class="skill-tag">R (Basic) [cite: 55]</span>
-                    <span class="skill-tag">SQL (Intermediate) [cite: 57]</span>
-                    <span class="skill-tag">MongoDB (Basic) [cite: 57]</span>
+                    <span class="skill-tag">Python (Intermediate)</span>
+                    <span class="skill-tag">R (Basic)</span>
+                    <span class="skill-tag">SQL (Intermediate)</span>
+                    <span class="skill-tag">MongoDB (Basic)</span>
                 </div>
             </div>
             
-            <div class="skill-group">
-                <h3>Machine Learning & AI</h3>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                    <h3>ML & Deep Learning</h3>
+                </div>
                 <div class="skill-list">
-                    <span class="skill-tag">Supervised Learning [cite: 56]</span>
-                    <span class="skill-tag">Unsupervised Learning [cite: 56]</span>
-                    <span class="skill-tag">Deep Learning (CNN, RNN) [cite: 58]</span>
-                    <span class="skill-tag">Data Mining & Visualization [cite: 52, 53]</span>
+                    <span class="skill-tag">Supervised Learning</span>
+                    <span class="skill-tag">Unsupervised Learning</span>
+                    <span class="skill-tag">CNN</span>
+                    <span class="skill-tag">RNN</span>
                 </div>
             </div>
 
-            <div class="skill-group">
-                <h3>Soft Skills & Tools</h3>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <div class="skill-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>Data & Tools</h3>
+                </div>
                 <div class="skill-list">
-                    <span class="skill-tag">English (B1 Equivalent) [cite: 54]</span>
-                    <span class="skill-tag">Problem Solving</span>
-                    <span class="skill-tag">Team Leadership [cite: 34, 43]</span>
+                    <span class="skill-tag">Data Crawling & Cleaning</span>
+                    <span class="skill-tag">Data Mining</span>
+                    <span class="skill-tag">Visualization</span>
+                    <span class="skill-tag">Excel / Canva</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer id="contact">
-        <h2 style="margin-bottom: 1.5rem;">Get In Touch</h2>
-        <div class="contact-info">
-            <p><i class="fas fa-map-marker-alt"></i> 1206/29 Kha Van Can, Linh Xuan, Thu Duc City [cite: 3]</p>
-            <p><i class="fas fa-phone"></i> 0366 333 953 [cite: 3]</p>
-            <p><i class="fas fa-envelope"></i> lehoanggiavi21082004@gmail.com [cite: 3]</p>
+    <footer id="contact" class="hidden">
+        <div class="footer-content">
+            <h2>Get In Touch!</h2>
+            <div class="contact-items">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Thu Duc City, HCMC</p>
+                </div>
+                <a href="tel:0366333953" class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <p>0366 333 953</p>
+                </a>
+                <a href="mailto:lehoanggiavi21082004@gmail.com" class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>lehoanggiavi21082004@gmail.com</p>
+                </a>
+            </div>
         </div>
-        <div style="margin-top: 2rem; font-size: 0.8rem; color: #94a3b8;">
-            &copy; 2025 Le Hoang Gia Vi. All Rights Reserved.
+        <div class="copyright">
+            &copy; 2025 Le Hoang Gia Vi. Designed for Data Science Internship.
         </div>
     </footer>
+
+    <script>
+        // Sử dụng Intersection Observer để phát hiện khi phần tử xuất hiện trong màn hình
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                console.log(entry)
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show'); // Thêm class 'show' để kích hoạt animation
+                }
+                // Nếu muốn hiệu ứng lặp lại khi cuộn lên xuống thì bỏ comment dòng dưới
+                // else { entry.target.classList.remove('show'); }
+            });
+        });
+
+        // Chọn tất cả các phần tử có class 'hidden' để theo dõi
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
 
 </body>
 </html>
