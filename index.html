@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Hoang Gia Vi - Data Scientist Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb; /* Blue */
+            --secondary-color: #1e293b; /* Dark Slate */
+            --bg-color: #f8fafc;
+            --text-color: #334155;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Header & Nav --- */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #64748b;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            color: var(--secondary-color);
+        }
+
+        /* --- Sections General --- */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- Education --- */
+        .education-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .edu-title h3 { font-size: 1.25rem; }
+        .edu-title span { color: #64748b; font-size: 0.9rem; }
+        .edu-gpa { 
+            background: #dbeafe; 
+            color: var(--primary-color); 
+            padding: 0.25rem 0.75rem; 
+            border-radius: 20px; 
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* --- Projects (Grid) --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .project-role {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        .project-link {
+            display: block;
+            margin-top: 1.5rem;
+            text-align: right;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* --- Publications --- */
+        .pub-item {
+            background: var(--white);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .pub-status {
+            color: #16a34a; /* Green */
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        /* --- Skills --- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-group h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: var(--white);
+            border: 1px solid #cbd5e1;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; } /* Simplified for single file demo */
+            .edu-header { flex-direction: column; gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Le Hoang Gia Vi</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#publications">Publications</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Le Hoang Gia Vi</h1>
+        <h2>Intern Data Scientist</h2>
+        <p>
+            Final-year Data Science student seeking an internship to apply skills in Machine Learning, 
+            Deep Learning, and Data Analysis. Passionate about solving real-world problems through data. [cite: 5, 6, 7]
+        </p>
+        <div class="social-links">
+            <a href="https://github.com/lehoanggiavi" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:lehoanggiavi21082004@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">Education</h2>
+        <div class="education-card">
+            <div class="edu-header">
+                <div class="edu-title">
+                    <h3>HUTECH University</h3>
+                    <span>Engineering of Data Science | Sep 2022 - Present [cite: 9, 10, 11, 19]</span>
+                </div>
+                <div class="edu-gpa">GPA: 3.25 / 4.00 [cite: 12]</div>
+            </div>
+            <p><strong>Achievements:</strong> Finalist of Hutech IT Got Talent (2024) - Fall detection AI solution using Camera & CSI signals. [cite: 14, 15]</p>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Project Experience</h2>
+        <div class="project-grid">
+            
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>DAGPT [cite: 26]</h3>
+                    <span class="project-role">Individual | Aug 2025 - Sep 2025 [cite: 27, 33]</span>
+                    <p>Built a Streamlit-based tool allowing non-technical users to upload CSVs and analyze data using LLM-powered queries. Automated chart generation for EDA. [cite: 31, 32]</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">LLM</span>
+                        <span class="tech-tag">Data Visualization</span>
+                    </div>
+                    <a href="https://github.com/lehoanggiavi/dagpt" class="project-link" target="_blank">View on Github <i class="fas fa-arrow-right"></i> [cite: 28]</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Smart Class - Emotion Analysis [cite: 34]</h3>
+                    <span class="project-role">Leader | Mar 2025 - Jun 2025 [cite: 34]</span>
+                    <p>Developed an AI system for real-time and video-based emotion recognition in classrooms. Achieved 90% accuracy for emotion classification. [cite: 38, 40, 41]</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Deep Learning</span>
+                        <span class="tech-tag">Computer Vision</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                    <a href="https://github.com/lehoanggiavi/smart_class" class="project-link" target="_blank">View on Github <i class="fas fa-arrow-right"></i> [cite: 35]</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>Credit Card Fraud Detection [cite: 42]</h3>
+                    <span class="project-role">Leader | Nov 2025 [cite: 43]</span>
+                    <p>Implemented machine & deep learning models optimized for highly imbalanced financial data. Achieved AUC 0.990 and Recall 0.953. [cite: 46, 48]</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Deep Learning</span>
+                        <span class="tech-tag">Imbalanced Data</span>
+                        <span class="tech-tag">Fraud Detection</span>
+                    </div>
+                    <a href="https://github.com/lehoanggiavi/cefd" class="project-link" target="_blank">View on Github <i class="fas fa-arrow-right"></i> [cite: 44]</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="publications">
+        <h2 class="section-title">Publications</h2>
+        
+        <div class="pub-item">
+            <span class="pub-status">Accepted [cite: 18]</span>
+            <h3>CacaoShield: AI application to identify cocoa diseases from the Cacao Disease data set</h3>
+            <p><em>REV-ECIT 2025</em></p>
+            <p><strong>Authors:</strong> Le Vi, Hoang Vu, NN Quynh Anh, Tien Do [cite: 17, 18]</p>
+        </div>
+
+        <div class="pub-item">
+            <span class="pub-status">Accepted [cite: 25]</span>
+            <h3>Factors Influencing Students' Acceptance Of The Safe Exam Browser Tool In Online Exams</h3>
+            <p><em>Based On The Extended Utaut Model (2025)</em></p>
+            <p><strong>Authors:</strong> Le Hoang Gia Vi, Hoang Nguyen Vu, Nguyen Ngoc Quynh Anh, Le Nhat Tung [cite: 22, 24]</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-container">
+            <div class="skill-group">
+                <h3>Languages & Databases</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Python (Intermediate) [cite: 55]</span>
+                    <span class="skill-tag">R (Basic) [cite: 55]</span>
+                    <span class="skill-tag">SQL (Intermediate) [cite: 57]</span>
+                    <span class="skill-tag">MongoDB (Basic) [cite: 57]</span>
+                </div>
+            </div>
+            
+            <div class="skill-group">
+                <h3>Machine Learning & AI</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Supervised Learning [cite: 56]</span>
+                    <span class="skill-tag">Unsupervised Learning [cite: 56]</span>
+                    <span class="skill-tag">Deep Learning (CNN, RNN) [cite: 58]</span>
+                    <span class="skill-tag">Data Mining & Visualization [cite: 52, 53]</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h3>Soft Skills & Tools</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">English (B1 Equivalent) [cite: 54]</span>
+                    <span class="skill-tag">Problem Solving</span>
+                    <span class="skill-tag">Team Leadership [cite: 34, 43]</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2 style="margin-bottom: 1.5rem;">Get In Touch</h2>
+        <div class="contact-info">
+            <p><i class="fas fa-map-marker-alt"></i> 1206/29 Kha Van Can, Linh Xuan, Thu Duc City [cite: 3]</p>
+            <p><i class="fas fa-phone"></i> 0366 333 953 [cite: 3]</p>
+            <p><i class="fas fa-envelope"></i> lehoanggiavi21082004@gmail.com [cite: 3]</p>
+        </div>
+        <div style="margin-top: 2rem; font-size: 0.8rem; color: #94a3b8;">
+            &copy; 2025 Le Hoang Gia Vi. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
