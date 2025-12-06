@@ -175,3 +175,124 @@ footer p { margin-bottom: 0.5rem; color: #cbd5e1; }
         font-size: 2.2rem;
     }
 }
+
+/* --- Projects Section (Giao diện thẻ bài có ảnh) --- */
+.section-projects {
+    padding: 6rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: #ffffff;
+}
+
+.projects-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.projects-header .section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.projects-header .section-subtitle {
+    color: #64748b;
+}
+
+/* Lưới 3 cột cho Projects */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cột bằng nhau */
+    gap: 2.5rem; /* Khoảng cách giữa các thẻ */
+}
+
+/* Thẻ Dự án */
+.project-card {
+    background: #ffffff;
+    border-radius: 8px; /* Bo góc nhẹ */
+    overflow: hidden; /* Để ảnh không bị tràn ra ngoài góc bo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e2e8f0; /* Viền mỏng nhẹ */
+}
+
+.project-card:hover {
+    transform: translateY(-5px); /* Bay lên nhẹ khi hover */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Phần Hình ảnh */
+.project-image {
+    width: 100%;
+    height: 220px; /* Chiều cao cố định cho tất cả ảnh */
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cắt ảnh tự động để vừa khung mà không méo */
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05); /* Phóng to ảnh nhẹ khi hover */
+}
+
+/* Phần Nội dung bên dưới ảnh */
+.project-content {
+    padding: 1.5rem;
+}
+
+.project-date {
+    font-size: 0.85rem;
+    color: #94a3b8; /* Màu xám nhạt */
+    margin-bottom: 0.5rem;
+    display: block;
+    font-weight: 500;
+}
+
+.project-card h3 {
+    font-size: 1.2rem;
+    font-weight: 800; /* Chữ đậm */
+    text-transform: uppercase; /* IN HOA TOÀN BỘ TIÊU ĐỀ */
+    color: #1e293b;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.project-card p {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.project-link {
+    font-weight: 600;
+    color: #2563eb; /* Màu xanh */
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.project-link:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+/* Responsive: Mobile & Tablet */
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr); /* Tablet: 2 cột */
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr; /* Mobile: 1 cột */
+    }
+    .project-image {
+        height: 200px;
+    }
+}
