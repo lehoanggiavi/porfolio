@@ -79,69 +79,99 @@ footer p { margin-bottom: 0.5rem; color: #cbd5e1; }
     .hero-img { height: 350px; }
 }
 
-/* --- Areas of Interest Section --- */
+/* --- Areas of Interest (Phiên bản Phóng to & Hàng ngang) --- */
 .section-interest {
     padding: 6rem 5%;
-    max-width: 1200px;
+    max-width: 1400px; /* Mở rộng chiều ngang để chứa nội dung to */
     margin: 0 auto;
     text-align: center;
-    background-color: var(--white); /* Đảm bảo nền trắng giống mẫu */
+    background-color: #ffffff;
 }
 
 .interest-header {
-    margin-bottom: 4rem;
+    margin-bottom: 5rem; /* Tăng khoảng cách xuống nội dung */
 }
 
-.section-subtitle {
-    color: var(--text-gray);
-    font-size: 1.1rem;
-    margin-top: -1.5rem; /* Kéo gần lại tiêu đề */
-    margin-bottom: 2rem;
+.interest-header .section-title {
+    font-size: 3rem; /* Phóng to tiêu đề chính "Areas of Interest" */
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #1e293b;
 }
 
+.interest-header .section-subtitle {
+    font-size: 1.2rem;
+    color: #64748b;
+}
+
+/* Lưới 3 cột (Hàng ngang) */
 .interest-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Chia 3 cột giống mẫu */
-    gap: 4rem 2rem; /* Khoảng cách hàng và cột */
+    grid-template-columns: repeat(3, 1fr); /* Bắt buộc chia 3 cột đều nhau */
+    gap: 5rem 3rem; /* Khoảng cách giữa các hàng là 5rem (rộng hơn), cột là 3rem */
 }
 
 .interest-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 1rem;
+    padding: 0 10px;
 }
 
-.interest-icon {
-    font-size: 2.5rem; /* Icon to */
-    color: var(--text-dark); /* Màu tối giống mẫu */
+/* Phần Icon - Làm to hẳn lên */
+.icon-box {
     margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
 }
 
+.icon-box i {
+    font-size: 4.5rem; /* Kích thước icon cực lớn (như ảnh mẫu) */
+    color: #334155;    /* Màu xám đen đậm giống ảnh mẫu */
+}
+
+/* Hiệu ứng khi rê chuột vào icon */
+.interest-item:hover .icon-box {
+    transform: scale(1.1); /* Phóng to nhẹ khi hover */
+}
+.interest-item:hover .icon-box i {
+    color: #6366f1; /* Đổi màu xanh khi hover (tùy chọn) */
+}
+
+/* Tiêu đề từng mục (Machine Learning, NLP...) */
 .interest-item h3 {
-    font-size: 1.1rem;
+    font-size: 1.5rem; /* Chữ to hơn */
     font-weight: 700;
     margin-bottom: 1rem;
-    color: var(--text-dark);
+    color: #0f172a;
 }
 
+/* Đoạn mô tả bên dưới */
 .interest-item p {
-    font-size: 0.95rem;
-    color: var(--text-gray);
-    line-height: 1.7;
-    max-width: 300px; /* Giới hạn chiều rộng chữ cho đẹp */
+    font-size: 1rem;
+    line-height: 1.8; /* Dãn dòng cho dễ đọc */
+    color: #64748b;
+    max-width: 320px; /* Giới hạn chiều rộng chữ để không bị bè ra quá */
 }
 
-/* Responsive cho Mobile: Chuyển về 1 cột */
-@media (max-width: 900px) {
+/* --- Responsive (Mobile & Tablet) --- */
+@media (max-width: 1024px) {
     .interest-grid {
-        grid-template-columns: repeat(2, 1fr); /* Tablet 2 cột */
+        grid-template-columns: repeat(2, 1fr); /* Tablet: 2 cột */
+        gap: 4rem 2rem;
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+    .section-interest {
+        padding: 4rem 1.5rem;
+    }
+    
     .interest-grid {
-        grid-template-columns: 1fr; /* Mobile 1 cột */
+        grid-template-columns: 1fr; /* Mobile: 1 cột (xếp chồng lên nhau) */
         gap: 3rem;
+    }
+
+    .interest-header .section-title {
+        font-size: 2.2rem;
     }
 }
