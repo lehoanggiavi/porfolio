@@ -1,21 +1,23 @@
 /* Import Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap');
 
 :root {
-    --primary: #6366f1; /* Indigo */
+    --primary: #6366f1; /* Màu tím xanh hiện đại */
     --dark: #1e293b;
     --light: #f8fafc;
     --text-gray: #64748b;
+    --white: #ffffff;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-body { background: var(--light); color: var(--dark); line-height: 1.6; }
+body { background: var(--light); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
 a { text-decoration: none; color: inherit; transition: 0.3s; }
+img { display: block; max-width: 100%; }
 
-/* Navigation */
+/* --- Navigation --- */
 nav {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 1.5rem 5%; max-width: 1200px; margin: 0 auto;
+    padding: 1.5rem 5%; max-width: 1400px; margin: 0 auto;
 }
 .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.2rem; }
 .logo-icon { background: var(--dark); color: white; padding: 5px 10px; border-radius: 8px; }
@@ -24,275 +26,104 @@ nav {
 .btn-contact { border: 2px solid var(--dark); padding: 0.4rem 1.2rem; border-radius: 50px; }
 .btn-contact:hover { background: var(--dark); color: white; }
 
-/* Hero Section (50/50 Layout) */
+/* --- Hero Section (50/50 Layout) --- */
 .hero {
     display: flex; align-items: center; justify-content: space-between;
-    min-height: 80vh; padding: 0 5%; max-width: 1200px; margin: 0 auto;
+    min-height: 90vh; padding: 0 5%; max-width: 1400px; margin: 0 auto;
 }
 .hero-text { flex: 1; padding-right: 3rem; }
-.intro-label { font-size: 1.1rem; color: var(--text-gray); font-weight: 600; }
-.hero-name { font-size: 3.5rem; line-height: 1.1; margin: 10px 0 20px; color: var(--dark); }
-.hero-desc { color: var(--text-gray); margin-bottom: 2rem; max-width: 500px; }
+.intro-label { font-size: 1.1rem; color: var(--text-gray); font-weight: 600; display: block; margin-bottom: 0.5rem;}
+.hero-name { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; color: var(--dark); font-weight: 800; }
+.hero-desc { color: var(--text-gray); margin-bottom: 2.5rem; max-width: 500px; font-size: 1.05rem; }
 .hero-btns { display: flex; gap: 1rem; }
-.btn-primary { background: var(--primary); color: white; padding: 0.8rem 2rem; border-radius: 6px; font-weight: 600; }
+
+.btn-primary { background: var(--primary); color: white; padding: 1rem 2.5rem; border-radius: 6px; font-weight: 600; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4); }
 .btn-primary:hover { background: #4f46e5; transform: translateY(-3px); }
-.btn-secondary { background: white; border: 1px solid #e2e8f0; padding: 0.8rem 2rem; border-radius: 6px; font-weight: 600; }
-.btn-secondary:hover { border-color: var(--dark); }
+.btn-secondary { background: white; border: 1px solid #e2e8f0; padding: 1rem 2.5rem; border-radius: 6px; font-weight: 600; }
+.btn-secondary:hover { border-color: var(--dark); background: var(--light); }
 
 .hero-image-container { flex: 1; display: flex; justify-content: flex-end; }
-.hero-img { width: 100%; max-width: 400px; height: 500px; object-fit: cover; border-radius: 20px; box-shadow: 20px 20px 0 #cbd5e1; }
+.hero-img { 
+    width: 100%; max-width: 450px; height: 550px; 
+    object-fit: cover; border-radius: 20px; 
+    box-shadow: 20px 20px 0 #cbd5e1; 
+}
 
-/* Sections */
-.section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
-.section-title { font-size: 2rem; margin-bottom: 3rem; position: relative; display: inline-block; }
-.section-title::after { content: ''; display: block; width: 50%; height: 4px; background: var(--primary); margin-top: 5px; }
+/* --- Areas of Interest (Skills) --- */
+.section-interest {
+    padding: 6rem 5%; background-color: var(--white);
+    max-width: 1400px; margin: 0 auto; text-align: center;
+}
+.interest-header { margin-bottom: 5rem; }
+.section-title { font-size: 2.5rem; font-weight: 800; color: var(--dark); margin-bottom: 1rem; }
+.section-subtitle { font-size: 1.1rem; color: var(--text-gray); }
 
-/* Projects Grid */
-.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-.project-card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); transition: 0.3s; border: 1px solid #e2e8f0; }
-.project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border-color: var(--primary); }
-.project-card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
-.role { font-size: 0.85rem; color: var(--primary); font-weight: 600; margin-bottom: 1rem; text-transform: uppercase; }
-.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0; }
-.tags span { background: #f1f5f9; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; color: var(--text-gray); }
-.project-link { font-weight: 600; font-size: 0.9rem; color: var(--dark); display: inline-flex; align-items: center; gap: 5px; }
+.interest-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 5rem 3rem;
+}
+.interest-item { display: flex; flex-direction: column; align-items: center; padding: 0 1rem; }
+.icon-box { margin-bottom: 1.5rem; transition: transform 0.3s; }
+.icon-box i { font-size: 4rem; color: var(--dark); } /* Icon to */
+.interest-item:hover .icon-box { transform: scale(1.1); }
+.interest-item:hover .icon-box i { color: var(--primary); }
+.interest-item h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: var(--dark); }
+.interest-item p { color: var(--text-gray); max-width: 300px; font-size: 0.95rem; }
 
-/* Publications */
-.pub-container { display: flex; flex-direction: column; gap: 1rem; }
-.pub-card { display: flex; gap: 1.5rem; background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #10b981; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-.pub-icon { font-size: 1.5rem; color: #10b981; margin-top: 5px; }
+/* --- Projects Section --- */
+.section-projects { padding: 6rem 5%; max-width: 1400px; margin: 0 auto; }
+.projects-header { text-align: center; margin-bottom: 4rem; }
 
-/* Footer */
-footer { background: var(--dark); color: white; padding: 4rem 2rem; text-align: center; }
-footer h3 { margin-bottom: 1.5rem; }
-footer p { margin-bottom: 0.5rem; color: #cbd5e1; }
-.copyright { margin-top: 3rem; font-size: 0.8rem; opacity: 0.6; }
+.projects-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;
+}
+.project-card {
+    background: var(--white); border-radius: 12px; overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); transition: 0.3s;
+    border: 1px solid #e2e8f0;
+}
+.project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
 
-/* Mobile Responsive */
+.project-image { width: 100%; height: 220px; overflow: hidden; }
+.project-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.project-card:hover .project-image img { transform: scale(1.05); }
+
+.project-content { padding: 1.5rem; }
+.project-date { font-size: 0.8rem; color: #94a3b8; font-weight: 600; display: block; margin-bottom: 0.5rem; }
+.project-card h3 { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; margin-bottom: 0.8rem; color: var(--dark); }
+.project-card p { font-size: 0.9rem; color: var(--text-gray); margin-bottom: 1.5rem; line-height: 1.5; }
+.project-link { font-weight: 600; font-size: 0.85rem; color: var(--primary); text-transform: uppercase; }
+.project-link:hover { text-decoration: underline; }
+
+/* --- Publications --- */
+.section-publications { padding: 4rem 5%; max-width: 1000px; margin: 0 auto; }
+.pub-container { display: flex; flex-direction: column; gap: 1.5rem; }
+.pub-card { 
+    display: flex; gap: 1.5rem; background: var(--white); padding: 2rem; 
+    border-radius: 8px; border-left: 5px solid #10b981; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+}
+.pub-icon { font-size: 1.8rem; color: #10b981; margin-top: 5px; }
+.pub-card h4 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+.pub-card p { color: var(--text-gray); font-size: 0.9rem; }
+
+/* --- Footer --- */
+footer { background: var(--dark); color: var(--white); padding: 5rem 2rem; text-align: center; margin-top: 4rem; }
+footer h3 { font-size: 1.8rem; margin-bottom: 2rem; }
+footer p { margin-bottom: 0.8rem; color: #cbd5e1; }
+footer i { margin-right: 10px; color: var(--primary); }
+.copyright { margin-top: 4rem; font-size: 0.8rem; opacity: 0.5; border-top: 1px solid #334155; padding-top: 2rem; }
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+    .interest-grid, .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-img { height: 450px; }
+}
+
 @media (max-width: 768px) {
     .nav-links { display: none; }
     .hero { flex-direction: column-reverse; text-align: center; padding-top: 2rem; }
     .hero-text { padding-right: 0; margin-top: 2rem; }
-    .hero-desc { margin: 0 auto 2rem; }
-    .hero-btns { justify-content: center; }
     .hero-image-container { justify-content: center; }
     .hero-img { height: 350px; }
-}
-
-/* --- Areas of Interest (Phiên bản Phóng to & Hàng ngang) --- */
-.section-interest {
-    padding: 6rem 5%;
-    max-width: 1400px; /* Mở rộng chiều ngang để chứa nội dung to */
-    margin: 0 auto;
-    text-align: center;
-    background-color: #ffffff;
-}
-
-.interest-header {
-    margin-bottom: 5rem; /* Tăng khoảng cách xuống nội dung */
-}
-
-.interest-header .section-title {
-    font-size: 3rem; /* Phóng to tiêu đề chính "Areas of Interest" */
-    font-weight: 800;
-    margin-bottom: 1rem;
-    color: #1e293b;
-}
-
-.interest-header .section-subtitle {
-    font-size: 1.2rem;
-    color: #64748b;
-}
-
-/* Lưới 3 cột (Hàng ngang) */
-.interest-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Bắt buộc chia 3 cột đều nhau */
-    gap: 5rem 3rem; /* Khoảng cách giữa các hàng là 5rem (rộng hơn), cột là 3rem */
-}
-
-.interest-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 10px;
-}
-
-/* Phần Icon - Làm to hẳn lên */
-.icon-box {
-    margin-bottom: 1.5rem;
-    transition: transform 0.3s ease;
-}
-
-.icon-box i {
-    font-size: 4.5rem; /* Kích thước icon cực lớn (như ảnh mẫu) */
-    color: #334155;    /* Màu xám đen đậm giống ảnh mẫu */
-}
-
-/* Hiệu ứng khi rê chuột vào icon */
-.interest-item:hover .icon-box {
-    transform: scale(1.1); /* Phóng to nhẹ khi hover */
-}
-.interest-item:hover .icon-box i {
-    color: #6366f1; /* Đổi màu xanh khi hover (tùy chọn) */
-}
-
-/* Tiêu đề từng mục (Machine Learning, NLP...) */
-.interest-item h3 {
-    font-size: 1.5rem; /* Chữ to hơn */
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #0f172a;
-}
-
-/* Đoạn mô tả bên dưới */
-.interest-item p {
-    font-size: 1rem;
-    line-height: 1.8; /* Dãn dòng cho dễ đọc */
-    color: #64748b;
-    max-width: 320px; /* Giới hạn chiều rộng chữ để không bị bè ra quá */
-}
-
-/* --- Responsive (Mobile & Tablet) --- */
-@media (max-width: 1024px) {
-    .interest-grid {
-        grid-template-columns: repeat(2, 1fr); /* Tablet: 2 cột */
-        gap: 4rem 2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .section-interest {
-        padding: 4rem 1.5rem;
-    }
-    
-    .interest-grid {
-        grid-template-columns: 1fr; /* Mobile: 1 cột (xếp chồng lên nhau) */
-        gap: 3rem;
-    }
-
-    .interest-header .section-title {
-        font-size: 2.2rem;
-    }
-}
-
-/* --- Projects Section (Giao diện thẻ bài có ảnh) --- */
-.section-projects {
-    padding: 6rem 5%;
-    max-width: 1400px;
-    margin: 0 auto;
-    background-color: #ffffff;
-}
-
-.projects-header {
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-.projects-header .section-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #1e293b;
-    margin-bottom: 0.5rem;
-}
-
-.projects-header .section-subtitle {
-    color: #64748b;
-}
-
-/* Lưới 3 cột cho Projects */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 cột bằng nhau */
-    gap: 2.5rem; /* Khoảng cách giữa các thẻ */
-}
-
-/* Thẻ Dự án */
-.project-card {
-    background: #ffffff;
-    border-radius: 8px; /* Bo góc nhẹ */
-    overflow: hidden; /* Để ảnh không bị tràn ra ngoài góc bo */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #e2e8f0; /* Viền mỏng nhẹ */
-}
-
-.project-card:hover {
-    transform: translateY(-5px); /* Bay lên nhẹ khi hover */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-/* Phần Hình ảnh */
-.project-image {
-    width: 100%;
-    height: 220px; /* Chiều cao cố định cho tất cả ảnh */
-    overflow: hidden;
-}
-
-.project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Cắt ảnh tự động để vừa khung mà không méo */
-    transition: transform 0.5s ease;
-}
-
-.project-card:hover .project-image img {
-    transform: scale(1.05); /* Phóng to ảnh nhẹ khi hover */
-}
-
-/* Phần Nội dung bên dưới ảnh */
-.project-content {
-    padding: 1.5rem;
-}
-
-.project-date {
-    font-size: 0.85rem;
-    color: #94a3b8; /* Màu xám nhạt */
-    margin-bottom: 0.5rem;
-    display: block;
-    font-weight: 500;
-}
-
-.project-card h3 {
-    font-size: 1.2rem;
-    font-weight: 800; /* Chữ đậm */
-    text-transform: uppercase; /* IN HOA TOÀN BỘ TIÊU ĐỀ */
-    color: #1e293b;
-    margin-bottom: 1rem;
-    line-height: 1.4;
-}
-
-.project-card p {
-    font-size: 0.95rem;
-    color: #64748b;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
-.project-link {
-    font-weight: 600;
-    color: #2563eb; /* Màu xanh */
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.project-link:hover {
-    color: #1d4ed8;
-    text-decoration: underline;
-}
-
-/* Responsive: Mobile & Tablet */
-@media (max-width: 1024px) {
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr); /* Tablet: 2 cột */
-    }
-}
-
-@media (max-width: 768px) {
-    .projects-grid {
-        grid-template-columns: 1fr; /* Mobile: 1 cột */
-    }
-    .project-image {
-        height: 200px;
-    }
+    .interest-grid, .projects-grid { grid-template-columns: 1fr; }
 }

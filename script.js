@@ -1,7 +1,6 @@
-// Chờ web tải xong mới chạy code
 document.addEventListener("DOMContentLoaded", () => {
     
-    // 1. Hiệu ứng cuộn mượt khi bấm Menu
+    // 1. Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -14,9 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 2. Hiệu ứng Fade-in khi cuộn xuống (Animation)
+    // 2. Reveal Animations (Hiện dần khi cuộn)
     const observerOptions = {
-        threshold: 0.1 // Khi hiện 10% phần tử thì bắt đầu hiệu ứng
+        threshold: 0.1 
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -28,16 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }, observerOptions);
 
-    // Áp dụng cho các thẻ card dự án và bài báo
-    const animatedElements = document.querySelectorAll('.project-card, .pub-card, .hero-text');
+    // Áp dụng cho các phần tử chính
+    const animatedElements = document.querySelectorAll('.hero-text, .hero-img, .interest-item, .project-card, .pub-card');
     
     animatedElements.forEach(el => {
-        // Thiết lập trạng thái ban đầu (ẩn đi)
         el.style.opacity = "0";
-        el.style.transform = "translateY(20px)";
-        el.style.transition = "all 0.6s ease-out";
-        
-        // Bắt đầu theo dõi
+        el.style.transform = "translateY(30px)"; // Dịch xuống dưới một chút
+        el.style.transition = "all 0.6s ease-out"; // Thời gian hiệu ứng
         observer.observe(el);
     });
 });
