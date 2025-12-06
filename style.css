@@ -78,3 +78,70 @@ footer p { margin-bottom: 0.5rem; color: #cbd5e1; }
     .hero-image-container { justify-content: center; }
     .hero-img { height: 350px; }
 }
+
+/* --- Areas of Interest Section --- */
+.section-interest {
+    padding: 6rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: var(--white); /* Đảm bảo nền trắng giống mẫu */
+}
+
+.interest-header {
+    margin-bottom: 4rem;
+}
+
+.section-subtitle {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    margin-top: -1.5rem; /* Kéo gần lại tiêu đề */
+    margin-bottom: 2rem;
+}
+
+.interest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Chia 3 cột giống mẫu */
+    gap: 4rem 2rem; /* Khoảng cách hàng và cột */
+}
+
+.interest-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.interest-icon {
+    font-size: 2.5rem; /* Icon to */
+    color: var(--text-dark); /* Màu tối giống mẫu */
+    margin-bottom: 1.5rem;
+}
+
+.interest-item h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.interest-item p {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    line-height: 1.7;
+    max-width: 300px; /* Giới hạn chiều rộng chữ cho đẹp */
+}
+
+/* Responsive cho Mobile: Chuyển về 1 cột */
+@media (max-width: 900px) {
+    .interest-grid {
+        grid-template-columns: repeat(2, 1fr); /* Tablet 2 cột */
+    }
+}
+
+@media (max-width: 600px) {
+    .interest-grid {
+        grid-template-columns: 1fr; /* Mobile 1 cột */
+        gap: 3rem;
+    }
+}
