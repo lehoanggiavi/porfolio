@@ -1,4 +1,3 @@
-/* --- 1. Cấu hình Particle.js (Hiệu ứng hạt nền) --- */
 particlesJS("particles-js", {
     "particles": {
         "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
@@ -28,7 +27,6 @@ particlesJS("particles-js", {
     "retina_detect": true
 });
 
-/* --- 2. Logic Portfolio Filter (Bộ lọc dự án) --- */
 const filterBtns = document.querySelectorAll('.filter-btn');
 const portfolioItems = document.querySelectorAll('.portfolio-item');
 
