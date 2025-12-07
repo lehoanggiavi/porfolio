@@ -14,10 +14,28 @@ body, html {
 }
 a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-/* --- NAVIGATION --- */
-nav { position: absolute; top: 20px; right: 40px; z-index: 100; }
-nav a { color: #555; margin-left: 20px; font-size: 14px; text-transform: uppercase; font-weight: bold; }
+/* --- NAVIGATION (FIXED) --- */
+nav {
+    position: fixed; /* Cố định menu */
+    top: 0; left: 0; width: 100%;
+    padding: 15px 40px; z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.95); /* Nền trắng mờ */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: right;
+    transition: all 0.3s ease;
+}
+nav a {
+    color: #555; margin-left: 30px;
+    font-size: 14px; text-transform: uppercase; font-weight: bold;
+    text-decoration: none; position: relative;
+}
 nav a:hover { color: var(--primary-color); }
+nav a::after {
+    content: ''; position: absolute; width: 0; height: 2px;
+    bottom: -5px; left: 0; background-color: var(--primary-color);
+    transition: width 0.3s;
+}
+nav a:hover::after { width: 100%; }
 
 /* --- HOME SECTION --- */
 #home-section { position: relative; width: 100%; height: 100vh; background-color: #fff; overflow: hidden; }
@@ -43,7 +61,7 @@ h1 { font-size: 3rem; margin: 10px 0; letter-spacing: 2px; font-weight: 700; }
 .btn-home:hover { background-color: var(--primary-color); color: white; }
 
 /* --- INTRO SECTION --- */
-#intro { background-color: #ffffff; padding: 60px 10% 80px; display: flex; flex-direction: column; align-items: center; }
+#intro { background-color: #ffffff; padding: 100px 10% 80px; display: flex; flex-direction: column; align-items: center; } /* Tăng padding-top vì menu fixed */
 .scroll-down-arrow { text-align: center; color: var(--primary-color); font-size: 30px; margin-bottom: 60px; animation: bounce 2s infinite; }
 @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
 .intro-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 50px; width: 100%; max-width: 1200px; margin-bottom: 60px; }
@@ -130,7 +148,7 @@ h1 { font-size: 3rem; margin: 10px 0; letter-spacing: 2px; font-weight: 700; }
 .portfolio-item.show { animation: fadeIn 0.5s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
-/* --- CONTACT SECTION --- */
+/* --- CONTACT SECTION & MAP --- */
 #contact { background-color: #fff; padding: 80px 0 0; text-align: center; }
 .contact-container { max-width: 800px; margin: 0 auto; padding: 0 20px 60px; }
 .contact-container h2 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; }
@@ -143,11 +161,21 @@ h1 { font-size: 3rem; margin: 10px 0; letter-spacing: 2px; font-weight: 700; }
     text-transform: uppercase; transition: all 0.3s ease; min-width: 150px;
 }
 .btn-contact:hover { background-color: var(--primary-color); color: #fff; }
+
+/* MAP GOOGLE FOOTER */
 .map-footer {
-    width: 100%; height: 300px; overflow: hidden; position: relative;
-    background-color: #eaf7f5; opacity: 0.6;
+    width: 100%; 
+    height: 400px; /* Chiều cao lớn để dễ nhìn */
+    overflow: hidden; 
+    position: relative;
+    background-color: #eaf7f5;
+    /* Đã xóa opacity để map rõ nét */
 }
-.map-footer img { width: 100%; height: 100%; object-fit: cover; }
+.map-footer iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
 
 /* FOOTER */
 footer { background-color: #333; color: white; text-align: center; padding: 20px; font-size: 0.9rem; }
@@ -165,5 +193,5 @@ footer { background-color: #333; color: white; text-align: center; padding: 20px
     .timeline-items { flex-direction: column; gap: 40px; }
     .timeline-item { text-align: left; }
     .timeline-item::before { top: 0; left: -39px; }
-    .pub-card { flex-direction: row; padding: 15px; } /* Mobile vẫn giữ ngang cho card bài báo */
+    .pub-card { flex-direction: row; padding: 15px; } 
 }
