@@ -1,0 +1,5 @@
+# Generated LaTeX build artifacts
+templates/*.aux
+templates/*.log
+templates/*.out
+templates/*.synctex.gz
