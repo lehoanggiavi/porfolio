@@ -2773,17 +2773,19 @@ footer {
   flex: 0 0 calc((100% - (var(--repo-gap) * 2)) / 3);
   grid-column: auto;
   min-width: 0;
-  height: clamp(360px, 34vw, 440px);
+  height: auto;
   min-height: 0;
   overflow: hidden;
-  display: block;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto minmax(0, 1fr);
   border: 1px solid rgba(255, 255, 255, .12);
   border-radius: 24px;
   background: #111115;
   box-shadow: 0 24px 70px rgba(0, 0, 0, .30);
   outline: none;
   isolation: isolate;
-  cursor: pointer;
+  cursor: default;
   transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
 }
 
@@ -2803,11 +2805,12 @@ footer {
 
 .repo-card-media,
 .repo-card-featured .repo-card-media {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  inset: auto;
   z-index: 1;
   min-height: 0;
   display: block;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: #111115;
 }
@@ -2817,8 +2820,10 @@ footer {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: .16;
-  background: linear-gradient(135deg, rgba(255, 255, 255, .16), transparent 38%);
+  opacity: 1;
+  background:
+    linear-gradient(to bottom, rgba(7, 7, 10, .36), transparent 42%),
+    linear-gradient(to top, rgba(7, 7, 10, .24), transparent 48%);
   transition: opacity .42s ease, background .42s ease;
 }
 
@@ -2837,8 +2842,8 @@ footer {
 .repo-card:focus .repo-card-media img,
 .repo-card:focus-within .repo-card-media img,
 .repo-card.is-active .repo-card-media img {
-  transform: scale(1.085);
-  filter: saturate(.8) contrast(1.08) brightness(.43);
+  transform: scale(1.045);
+  filter: saturate(1.05) contrast(1.04) brightness(.96);
 }
 
 .repo-card:hover .repo-card-media::after,
@@ -2847,14 +2852,15 @@ footer {
 .repo-card.is-active .repo-card-media::after {
   opacity: 1;
   background:
-    linear-gradient(to top, rgba(5, 5, 7, .97) 0%, rgba(7, 7, 10, .72) 48%, rgba(7, 7, 10, .18) 100%),
-    linear-gradient(135deg, rgba(197, 225, 151, .10), transparent 50%);
+    linear-gradient(to bottom, rgba(7, 7, 10, .26), transparent 44%),
+    linear-gradient(to top, rgba(7, 7, 10, .34), transparent 54%),
+    linear-gradient(135deg, rgba(197, 225, 151, .10), transparent 52%);
 }
 
 .repo-card-number,
 .repo-open-icon {
-  opacity: 0;
-  transform: translateY(-8px);
+  opacity: 1;
+  transform: none;
   transition: opacity .32s ease, transform .32s ease;
 }
 
@@ -2867,24 +2873,24 @@ footer {
 .repo-card.is-active .repo-card-number,
 .repo-card.is-active .repo-open-icon {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .repo-card-body,
 .repo-card-featured .repo-card-body {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  inset: auto;
   z-index: 3;
   min-width: 0;
-  padding: 28px 27px 26px;
+  padding: 22px 22px 24px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  opacity: 0;
-  transform: translateY(20px);
-  pointer-events: none;
-  background: transparent;
-  transition: opacity .38s ease, transform .48s cubic-bezier(.22, .75, .18, 1);
+  justify-content: flex-start;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  background: linear-gradient(145deg, #1a1a20 0%, #101013 82%);
+  transition: background .35s ease;
 }
 
 .repo-card:hover .repo-card-body,
@@ -2892,7 +2898,7 @@ footer {
 .repo-card:focus-within .repo-card-body,
 .repo-card.is-active .repo-card-body {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
   pointer-events: auto;
 }
 
@@ -2904,7 +2910,7 @@ footer {
   margin: 0 0 10px;
   color: #fff;
   font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(1.55rem, 2.1vw, 2.15rem);
+  font-size: clamp(1.3rem, 1.7vw, 1.65rem);
   line-height: 1.05;
   letter-spacing: -.035em;
 }
@@ -2929,7 +2935,7 @@ footer {
 }
 
 .repo-card-body .repo-link {
-  margin-top: 0;
+  margin-top: auto;
   align-self: flex-start;
   padding: 10px 14px;
   border: 1px solid rgba(197, 225, 151, .44);
@@ -2980,7 +2986,7 @@ footer {
   .repo-card,
   .repo-card-featured {
     flex-basis: calc((100% - var(--repo-gap)) / 2);
-    height: 410px;
+    height: auto;
   }
 }
 
@@ -3017,7 +3023,7 @@ footer {
   .repo-card,
   .repo-card-featured {
     flex-basis: 100%;
-    height: min(118vw, 470px);
+    height: auto;
   }
 
   .repo-card-body,
