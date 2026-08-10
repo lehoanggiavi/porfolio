@@ -3,6 +3,256 @@ const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)]
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+/* English / Vietnamese language switch */
+let currentLanguage = "en";
+const languageToggle = $("#language-toggle");
+const languagePairs = [
+  ["AI ENGINEER", "KỸ SƯ AI"],
+  ["AI Engineer", "Kỹ sư AI"],
+  ["About", "Giới thiệu"],
+  ["Expertise", "Chuyên môn"],
+  ["Experience", "Kinh nghiệm"],
+  ["Projects", "Dự án"],
+  ["Research", "Nghiên cứu"],
+  ["Contact", "Liên hệ"],
+  ["Download CV", "Tải CV"],
+  ["View CV", "Xem CV"],
+  ["Explore AI Projects", "Khám phá dự án AI"],
+  ["AI ENGINEERING · COMPUTER VISION · LLM SYSTEMS", "KỸ THUẬT AI · THỊ GIÁC MÁY TÍNH · HỆ THỐNG LLM"],
+  ["Building practical AI systems", "Xây dựng các hệ thống AI thực tiễn"],
+  ["from model to deployment.", "từ mô hình đến triển khai."],
+  ["Le Hoang Gia Vi — Fresher AI Engineer", "Le Hoang Gia Vi — Kỹ sư AI Fresher"],
+  ["Final-year Data Science student and AI Engineer Intern with hands-on experience in", "Sinh viên năm cuối ngành Khoa học Dữ liệu, đồng thời là thực tập sinh Kỹ sư AI với kinh nghiệm thực hành về"],
+  ["computer vision, machine learning, LLM/RAG and cloud AI", "thị giác máy tính, học máy, LLM/RAG và AI trên nền tảng đám mây"],
+  ["I turn models and experiments into reliable applications with measurable performance.", "Tôi chuyển hóa mô hình và thử nghiệm thành ứng dụng đáng tin cậy với hiệu năng đo lường được."],
+  ["Open to Fresher AI Engineer opportunities", "Sẵn sàng cho các vị trí Kỹ sư AI Fresher"],
+  ["Machine Learning · Applied AI", "Học máy · AI ứng dụng"],
+  ["Focused technologies", "Công nghệ trọng tâm"],
+  ["ABOUT ME", "GIỚI THIỆU"],
+  ["Research mindset. Product thinking.", "Tư duy nghiên cứu. Tư duy sản phẩm."],
+  ["ABOUT", "GIỚI THIỆU"],
+  ["From AI experiments to", "Từ thử nghiệm AI đến"],
+  ["working systems.", "hệ thống vận hành."],
+  ["I am a final-year Data Science student with hands-on experience", "Tôi là sinh viên năm cuối ngành Khoa học Dữ liệu với kinh nghiệm thực hành"],
+  ["in computer vision, machine learning, LLM-based applications and cloud AI deployment.", "về thị giác máy tính, học máy, ứng dụng dựa trên LLM và triển khai AI trên đám mây."],
+  ["My work spans model training and evaluation, real-time inference, retrieval-based", "Công việc của tôi bao gồm huấn luyện và đánh giá mô hình, suy luận thời gian thực, hệ thống truy xuất"],
+  ["systems and end-to-end AI pipelines.", "và các pipeline AI đầu-cuối."],
+  ["I am particularly interested in AI systems that are not only accurate in", "Tôi đặc biệt quan tâm đến các hệ thống AI không chỉ chính xác trong"],
+  ["experiments, but also reproducible, efficient and usable in real-world applications.", "thử nghiệm mà còn có thể tái lập, hiệu quả và hữu ích trong ứng dụng thực tế."],
+  ["Machine learning & AI engineering", "Học máy & kỹ thuật AI"],
+  ["Modeling, evaluation and delivery for reliable intelligent systems.", "Xây dựng, đánh giá và triển khai các hệ thống thông minh đáng tin cậy."],
+  ["Computer vision & retrieval", "Thị giác máy tính & truy xuất"],
+  ["YOLO, deep learning, RAG and LLM-enabled data applications.", "YOLO, học sâu, RAG và ứng dụng dữ liệu tích hợp LLM."],
+  ["Cloud & data delivery", "Triển khai đám mây & dữ liệu"],
+  ["AWS services, data pipelines and production-oriented AI workflows.", "Dịch vụ AWS, pipeline dữ liệu và quy trình AI hướng đến triển khai."],
+  ["AI & Cloud Internships", "Thực tập AI & Đám mây"],
+  ["Accepted Papers", "Bài báo được chấp nhận"],
+  ["CORE EXPERTISE", "NĂNG LỰC CỐT LÕI"],
+  ["Capabilities for building", "Năng lực xây dựng"],
+  ["production-minded AI systems.", "hệ thống AI hướng đến triển khai."],
+  ["I focus on model development, computer vision, retrieval-based applications", "Tôi tập trung vào phát triển mô hình, thị giác máy tính và ứng dụng dựa trên truy xuất"],
+  ["and the engineering practices that turn experiments into usable systems.", "cùng các thực hành kỹ thuật giúp chuyển thử nghiệm thành hệ thống hữu ích."],
+  ["BUILDING MODE", "TƯ DUY XÂY DỰNG"],
+  ["From raw data to decision-ready products.", "Từ dữ liệu thô đến sản phẩm sẵn sàng ra quyết định."],
+  ["Machine Learning & Deep Learning", "Học máy & Học sâu"],
+  ["Train, evaluate and optimize ML and DL models for classification,", "Huấn luyện, đánh giá và tối ưu mô hình ML/DL cho bài toán phân loại,"],
+  ["forecasting and imbalanced-learning problems.", "dự báo và dữ liệu mất cân bằng."],
+  ["Computer Vision", "Thị giác máy tính"],
+  ["Build image and real-time vision pipelines covering detection,", "Xây dựng pipeline thị giác từ ảnh và thời gian thực, bao gồm phát hiện,"],
+  ["recognition, preprocessing and inference optimization.", "nhận diện, tiền xử lý và tối ưu suy luận."],
+  ["LLM & AI Applications", "LLM & Ứng dụng AI"],
+  ["Build retrieval-based AI applications that combine data pipelines,", "Xây dựng ứng dụng AI dựa trên truy xuất, kết hợp pipeline dữ liệu,"],
+  ["embeddings, LLMs and accessible application interfaces.", "embedding, LLM và giao diện ứng dụng dễ tiếp cận."],
+  ["PERSONAL JOURNEY", "HÀNH TRÌNH"],
+  ["Learning through projects, teamwork and research.", "Học hỏi qua dự án, làm việc nhóm và nghiên cứu."],
+  ["EXPERIENCE & EDUCATION", "KINH NGHIỆM & HỌC VẤN"],
+  ["Building, deploying and", "Xây dựng, triển khai và"],
+  ["improving AI systems.", "cải tiến hệ thống AI."],
+  ["My experience combines AI engineering internships, cloud delivery, academic", "Kinh nghiệm của tôi kết hợp thực tập kỹ thuật AI, triển khai đám mây, nền tảng"],
+  ["foundations and research. Each milestone strengthened my ability to take a", "học thuật và nghiên cứu. Mỗi cột mốc đều củng cố năng lực đưa một"],
+  ["model from data and experimentation to a usable intelligent system.", "mô hình từ dữ liệu và thử nghiệm thành hệ thống thông minh hữu ích."],
+  ["Mar 2026 — Present", "03/2026 — Nay"],
+  ["Nano Factory · AI Engineer Intern", "Nano Factory · Thực tập sinh Kỹ sư AI"],
+  ["Fine-tuned YOLOX-tiny on 2,336 COCO images: AP50 85.0%, AP@[0.50:0.95] 61.8%, 5.91 ms/image; proposed an active-learning loop.", "Tinh chỉnh YOLOX-tiny trên 2.336 ảnh COCO: AP50 85,0%, AP@[0,50:0,95] 61,8%, 5,91 ms/ảnh; đề xuất vòng lặp học chủ động."],
+  ["Mar 2026 — Jul 2026", "03/2026 — 07/2026"],
+  ["AWS · Cloud Engineer Intern", "AWS · Thực tập sinh Kỹ sư Đám mây"],
+  ["Built a fraud-detection flow with API Gateway, Lambda, Kinesis, SageMaker, SNS, Firehose and S3 prediction history.", "Xây dựng luồng phát hiện gian lận với API Gateway, Lambda, Kinesis, SageMaker, SNS, Firehose và lịch sử dự đoán trên S3."],
+  ["Sep 2022 — Present", "09/2022 — Nay"],
+  ["HUTECH · Engineering of Data Science", "HUTECH · Kỹ thuật Khoa học Dữ liệu"],
+  ["Final-year Data Science student · GPA 3.39/4.00.", "Sinh viên năm cuối Khoa học Dữ liệu · GPA 3.39/4.00."],
+  ["HUTECH IT Got Talent · Finalist", "HUTECH IT Got Talent · Chung kết"],
+  ["Built an AI fall-detection solution using camera and CSI signals with real-time email alerts.", "Xây dựng giải pháp AI phát hiện té ngã từ camera và tín hiệu CSI, có cảnh báo email thời gian thực."],
+  ["FEATURED AI SYSTEMS", "HỆ THỐNG AI TIÊU BIỂU"],
+  ["Evidence of how I", "Bằng chứng về cách tôi"],
+  ["build AI systems.", "xây dựng hệ thống AI."],
+  ["The first three projects are the clearest recruiter-facing proof from my CV. Use the arrows to explore supporting AI, data and research repositories.", "Ba dự án đầu là bằng chứng rõ nhất cho nhà tuyển dụng từ CV của tôi. Dùng mũi tên để xem các kho mã nguồn AI, dữ liệu và nghiên cứu bổ trợ."],
+  ["of", "trên"],
+  ["All", "Tất cả"],
+  ["Data & BI", "Dữ liệu & BI"],
+  ["Machine Learning", "Học máy"],
+  ["All repositories", "Tất cả kho mã nguồn"],
+  ["Built an end-to-end banking analytics pipeline from SQL Server warehousing and Power BI reporting to K-Means segmentation, processing 157K+ transactions and 2K+ customer profiles.", "Xây dựng pipeline phân tích ngân hàng đầu-cuối từ kho dữ liệu SQL Server và báo cáo Power BI đến phân khúc K-Means, xử lý hơn 157 nghìn giao dịch và 2 nghìn hồ sơ khách hàng."],
+  ["Led real-time classroom monitoring with 90% emotion-classification and 95% identity-recognition accuracy; visualized trends for early intervention.", "Dẫn dắt hệ thống giám sát lớp học thời gian thực với độ chính xác 90% cho phân loại cảm xúc và 95% cho nhận diện danh tính; trực quan hóa xu hướng để can thiệp sớm."],
+  ["Lightweight CNN-Transformer pipeline for real-time facial emotion recognition across eight classes.", "Pipeline CNN-Transformer gọn nhẹ cho nhận diện cảm xúc khuôn mặt thời gian thực trên tám lớp."],
+  ["Individual Streamlit LLM assistant that turns uploaded CSV files and natural-language questions into analysis and interactive charts.", "Trợ lý LLM Streamlit cá nhân, chuyển tệp CSV tải lên và câu hỏi ngôn ngữ tự nhiên thành phân tích cùng biểu đồ tương tác."],
+  ["Transfer-learning system for recognizing diseases on cocoa pods from images.", "Hệ thống transfer learning nhận diện bệnh trên quả ca cao từ ảnh."],
+  ["Developed an imbalanced fraud-detection pipeline combining Bi-LSTM modeling with SMOTE-ENN resampling, achieving AUC 0.990 and Recall 0.953.", "Phát triển pipeline phát hiện gian lận với dữ liệu mất cân bằng, kết hợp Bi-LSTM và SMOTE-ENN, đạt AUC 0.990 cùng Recall 0.953."],
+  ["Camera-based system for identifying available parking spaces in real time.", "Hệ thống dựa trên camera để nhận diện chỗ đỗ xe trống theo thời gian thực."],
+  ["Classification workflow for analyzing patient indicators and predicting disease risk.", "Quy trình phân loại để phân tích chỉ số bệnh nhân và dự đoán nguy cơ bệnh."],
+  ["FullRAG and agent-based system for data-grounded VN30 stock analysis using financial data, news and reports.", "Hệ thống FullRAG và agent cho phân tích cổ phiếu VN30 có căn cứ dữ liệu, sử dụng dữ liệu tài chính, tin tức và báo cáo."],
+  ["View repository", "Xem mã nguồn"],
+  ["Face Recognition", "Nhận diện khuôn mặt"],
+  ["Real-time", "Thời gian thực"],
+  ["RESEARCH · 5 ACCEPTED PAPERS", "NGHIÊN CỨU · 5 BÀI BÁO ĐƯỢC CHẤP NHẬN"],
+  ["Research that strengthens", "Nghiên cứu củng cố"],
+  ["reliable AI systems.", "các hệ thống AI đáng tin cậy."],
+  ["Research experience helps me frame data questions, design stronger experiments,", "Kinh nghiệm nghiên cứu giúp tôi đặt câu hỏi dữ liệu tốt hơn, thiết kế thí nghiệm chặt chẽ hơn,"],
+  ["evaluate models carefully and communicate technical findings clearly.", "đánh giá mô hình cẩn trọng và truyền đạt phát hiện kỹ thuật rõ ràng."],
+  ["ACADEMIC WORK", "CÔNG TRÌNH HỌC THUẬT"],
+  ["Experiment. Analyze. Communicate.", "Thử nghiệm. Phân tích. Truyền đạt."],
+  ["REV-ECIT 2025 · Accepted · Jul–Oct 2025", "REV-ECIT 2025 · Được chấp nhận · 07–10/2025"],
+  ["AI application to identify cocoa diseases from the Cacao Disease dataset.", "Ứng dụng AI nhận diện bệnh ca cao từ bộ dữ liệu Cacao Disease."],
+  ["Distance Education 2025 · Accepted · Nov 2025", "Đào tạo từ xa 2025 · Được chấp nhận · 11/2025"],
+  ["Extended UTAUT study of factors influencing acceptance of the Safe Exam", "Nghiên cứu Extended UTAUT về các yếu tố ảnh hưởng đến việc chấp nhận công cụ"],
+  ["Browser tool in online examinations.", "Safe Exam Browser trong thi trực tuyến."],
+  ["AIFMA 2025 · Accepted · Dec 2025", "AIFMA 2025 · Được chấp nhận · 12/2025"],
+  ["Hybrid strategy combining Bi-LSTM and SMOTE-ENN for highly imbalanced", "Chiến lược lai kết hợp Bi-LSTM và SMOTE-ENN cho dữ liệu"],
+  ["financial transaction data.", "giao dịch tài chính mất cân bằng cao."],
+  ["FJCAI 2026 · Accepted · Jan–Mar 2026", "FJCAI 2026 · Được chấp nhận · 01–03/2026"],
+  ["Customized hybrid neural-network architecture for real-time facial emotion", "Kiến trúc mạng nơ-ron lai được tùy chỉnh cho nhận diện cảm xúc khuôn mặt"],
+  ["recognition across eight emotion classes.", "thời gian thực trên tám lớp cảm xúc."],
+  ["ICEISD 2026 · Accepted · Feb–Apr 2026", "ICEISD 2026 · Được chấp nhận · 02–04/2026"],
+  ["Hybrid GRU-Fourier Neural Operator study for flood-water-level forecasting", "Nghiên cứu Hybrid GRU-Fourier Neural Operator cho dự báo mực nước lũ"],
+  ["and comparative deep-learning evaluation on time series.", "và đánh giá so sánh học sâu trên chuỗi thời gian."],
+  ["CONTACT", "LIÊN HỆ"],
+  ["Let's build something", "Hãy cùng xây dựng điều gì đó"],
+  ["intelligent.", "thông minh."],
+  ["I am currently seeking an AI Engineer role where I can contribute to", "Tôi hiện tìm kiếm vị trí Kỹ sư AI, nơi tôi có thể đóng góp vào"],
+  ["machine-learning, computer-vision, retrieval and cloud AI solutions.", "các giải pháp học máy, thị giác máy tính, truy xuất và AI đám mây."],
+  ["Connect professionally", "Kết nối chuyên nghiệp"],
+  ["Explore my source code", "Khám phá mã nguồn của tôi"],
+  ["Building practical AI systems with research discipline and engineering thinking.", "Xây dựng hệ thống AI thực tiễn với kỷ luật nghiên cứu và tư duy kỹ thuật."],
+  ["Portfolio", "Hồ sơ"],
+  ["Publications", "Bài báo"],
+  ["Connect", "Kết nối"],
+  ["Available for AI Engineer opportunities", "Sẵn sàng cho các cơ hội Kỹ sư AI"]
+];
+const languageRules = {
+  en: languagePairs
+    .map(([en, vi]) => [vi, en])
+    .sort(([a], [b]) => b.length - a.length),
+  vi: [...languagePairs].sort(([a], [b]) => b.length - a.length)
+};
+
+function localizedText(en, vi) {
+  return currentLanguage === "vi" ? vi : en;
+}
+
+function textPattern(text) {
+  return text
+    .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+    .replace(/ /g, "\\s+");
+}
+
+function translateTextNodes(language) {
+  const translations = languageRules[language];
+  const roots = [$("nav"), $("main"), $("footer")].filter(Boolean);
+
+  roots.forEach((root) => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    let node;
+
+    while ((node = walker.nextNode())) nodes.push(node);
+
+    nodes.forEach((textNode) => {
+      const original = textNode.nodeValue;
+      const translated = translations.reduce(
+        (value, [source, target]) => value.replace(new RegExp(textPattern(source), "g"), target),
+        original
+      );
+
+      if (translated !== original) textNode.nodeValue = translated;
+    });
+  });
+}
+
+function updateLanguageAttributes(language) {
+  const isVietnamese = language === "vi";
+  document.documentElement.lang = language;
+  document.documentElement.dataset.language = language;
+  document.title = isVietnamese
+    ? "Le Hoang Gia Vi | Kỹ sư AI"
+    : "Le Hoang Gia Vi | AI Engineer";
+
+  const description = document.querySelector('meta[name="description"]');
+  if (description) {
+    description.content = isVietnamese
+      ? "Portfolio Kỹ sư AI của Le Hoang Gia Vi với các dự án học máy, thị giác máy tính, hệ thống dữ liệu và AI ứng dụng"
+      : "Le Hoang Gia Vi — AI Engineer portfolio featuring machine learning, computer vision, data systems, and applied AI projects";
+  }
+
+  languageToggle?.setAttribute(
+    "aria-label",
+    isVietnamese ? "Chuyển sang tiếng Anh" : "Switch language to Vietnamese"
+  );
+  languageToggle?.setAttribute("aria-pressed", String(isVietnamese));
+  const toggleLabel = $("span", languageToggle || document);
+  if (toggleLabel) toggleLabel.textContent = isVietnamese ? "EN" : "VI";
+
+  $(".desktop-nav")?.setAttribute("aria-label", isVietnamese ? "Điều hướng chính" : "Main navigation");
+  $(".project-filters")?.setAttribute("aria-label", isVietnamese ? "Lọc kho mã nguồn" : "Filter repositories");
+  $("#menu-toggle")?.setAttribute("aria-label", isVietnamese ? "Mở hoặc đóng điều hướng" : "Toggle navigation");
+  $("#repoPrev")?.setAttribute("aria-label", isVietnamese ? "Hiển thị các kho mã nguồn trước" : "Show previous repositories");
+  $("#repoNext")?.setAttribute("aria-label", isVietnamese ? "Hiển thị các kho mã nguồn tiếp theo" : "Show next repositories");
+
+  const backgroundVideo = $("#site-video");
+  const videoControl = $("#video-toggle");
+  if (backgroundVideo && videoControl) {
+    const videoLabel = backgroundVideo.paused
+      ? localizedText("Play background video", "Phát video nền")
+      : localizedText("Pause background video", "Tạm dừng video nền");
+    videoControl.setAttribute("aria-label", videoLabel);
+    videoControl.setAttribute("title", videoLabel);
+  }
+
+  $$(".repo-card-media").forEach((link) => {
+    const name = $("h3", link.closest(".repo-card"))?.textContent?.trim();
+    if (name) {
+      link.setAttribute(
+        "aria-label",
+        isVietnamese ? `Mở kho mã nguồn ${name}` : `Open ${name} repository`
+      );
+    }
+  });
+}
+
+function setLanguage(language) {
+  if (language === currentLanguage) return;
+
+  translateTextNodes(language);
+  currentLanguage = language;
+  updateLanguageAttributes(language);
+
+  try {
+    window.localStorage.setItem("portfolio-language", language);
+  } catch (error) {
+    console.warn("Unable to save language preference:", error);
+  }
+}
+
+try {
+  const savedLanguage = window.localStorage.getItem("portfolio-language");
+  if (savedLanguage === "vi") setLanguage("vi");
+} catch (error) {
+  console.warn("Unable to load language preference:", error);
+}
+
+updateLanguageAttributes(currentLanguage);
+languageToggle?.addEventListener("click", () => {
+  setLanguage(currentLanguage === "en" ? "vi" : "en");
+});
+
 /* Page ready */
 window.addEventListener("DOMContentLoaded", () => {
   requestAnimationFrame(() => document.body.classList.add("page-ready"));
@@ -27,11 +277,15 @@ if (siteVideo) {
     icon?.setAttribute("icon", paused ? "lucide:play" : "lucide:pause");
     videoToggle.setAttribute(
       "aria-label",
-      paused ? "Play background video" : "Pause background video"
+      paused
+        ? localizedText("Play background video", "Phát video nền")
+        : localizedText("Pause background video", "Tạm dừng video nền")
     );
     videoToggle.setAttribute(
       "title",
-      paused ? "Play background video" : "Pause background video"
+      paused
+        ? localizedText("Play background video", "Phát video nền")
+        : localizedText("Pause background video", "Tạm dừng video nền")
     );
     videoToggle.classList.toggle("is-paused", paused);
   };
@@ -338,6 +592,17 @@ const repoTrack = $("#repoTrack");
 const repoViewport = $("#repoViewport");
 const repoPrev = $("#repoPrev");
 const repoNext = $("#repoNext");
+
+if (repoTrack) {
+  repoCards
+    .sort((a, b) => Number(a.dataset.priority) - Number(b.dataset.priority))
+    .forEach((card, index) => {
+      repoTrack.append(card);
+
+      const number = $(".repo-card-number", card);
+      if (number) number.textContent = String(index + 1).padStart(2, "0");
+    });
+}
 
 let repoCurrentIndex = 0;
 let repoActiveFilter = "all";
