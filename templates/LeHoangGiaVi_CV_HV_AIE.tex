@@ -1,0 +1,188 @@
+% !TEX program = xelatex
+% Compile with: xelatex -interaction=nonstopmode LeHoangGiaVi_CV_AnhNhatStyle.tex
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[letterpaper,top=0.52in,bottom=0.50in,left=0.75in,right=0.75in]{geometry}
+\usepackage{fontspec}
+% Latin Modern Roman is the font used by the Anh Nhat reference CV and is
+% bundled with standard XeLaTeX installations. Cambria remains a fallback.
+\IfFontExistsTF{Latin Modern Roman}
+  {\setmainfont{Latin Modern Roman}[Ligatures=NoCommon]}
+  {\setmainfont{Cambria}[Ligatures=NoCommon]}
+% Keep the document compilable even if Font Awesome has not been installed.
+\IfFileExists{fontawesome5.sty}{\usepackage{fontawesome5}}{\newcommand{\faIcon}[1]{\textbullet}}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{needspace}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\footnotesize\color{black!75}Le Hoang Gia Vi --- (+84) 366 333 953}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\headheight}{0pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\raggedright
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=black,
+  pdfauthor={Le Hoang Gia Vi},
+  pdftitle={Le Hoang Gia Vi --- AI Engineer CV}
+}
+
+\titleformat{\section}
+  {\large\bfseries}
+  {}
+  {0pt}
+  {}
+  [\titlerule]
+\titlespacing*{\section}{0pt}{0.80em}{0.80em}
+
+\newcommand{\cvsection}[2]{\section*{\faIcon{#1}\hspace{0.45em}#2}}
+\newcommand{\cvcompactsection}[2]{%
+  \vspace{0.35em}{\large\bfseries\faIcon{#1}\hspace{0.45em}#2}\par
+  \vspace{0.12em}\hrule\vspace{0.35em}
+}
+\newcommand{\cvitem}[1]{%
+  \item \normalsize #1
+}
+\newcommand{\cvsubsection}[2]{%
+  {\normalsize\bfseries\faIcon{#1}\hspace{0.4em}#2}\par
+}
+\newcommand{\researchitem}[2]{%
+  \item \normalsize #1\\[-0.25em]
+  \hspace{1.25em}\textit{#2}
+}
+\newcommand{\paperitem}[3]{%
+  \item \normalsize \textbf{#1} --- #2\\[-0.32em]
+  \hspace{1.25em}\textit{#3}%
+}
+\newcommand{\cventry}[3]{%
+  \begin{tabularx}{\textwidth}{@{}X>{\raggedleft\arraybackslash}p{1.52in}@{}}
+    \textbf{#1} & \normalsize #2 \\
+  \end{tabularx}\par
+  \if\relax\detokenize{#3}\relax\else\vspace{0.10em}\normalsize\textit{#3}\par\vspace{0.08em}\fi
+}
+\newcommand{\cvjobentry}[3]{%
+  \begin{tabularx}{\textwidth}{@{}X>{\raggedleft\arraybackslash}p{1.52in}@{}}
+    \textbf{#1} & \normalsize #2 \\
+  \end{tabularx}\par
+  \vspace{0.10em}\normalsize\textit{#3}\par\vspace{0.08em}
+}
+\newcommand{\cvlink}[2]{\href{#1}{\underline{#2}}}
+
+\begin{document}
+
+\begin{center}
+  {\fontsize{20}{23}\selectfont\bfseries LE HOANG GIA VI}\\[0.25em]
+  {\fontsize{17}{20}\selectfont\bfseries AI Engineer}\\[0.5em]
+  {\small
+  \faIcon{map-marker-alt}\hspace{0.2em}Thu Duc District
+  \quad
+  \faIcon{phone-alt}\hspace{0.2em}+84 366 333 953
+  \quad
+  \faIcon{envelope}\hspace{0.2em}\cvlink{mailto:lehoanggiavi21082004@gmail.com}{lehoanggiavi21082004@gmail.com}
+  \quad
+  \faIcon{github}\hspace{0.2em}\cvlink{https://github.com/lehoanggiavi}{GitHub}
+  \quad
+  \faIcon{globe}\hspace{0.2em}\cvlink{https://lehoanggiavi.github.io/portfolio}{Portfolio}}
+\end{center}
+
+\cvsection{user}{SUMMARY}
+\normalsize
+Final-year Data Science student seeking a AI Engineer role. Experienced in designing end-to-end data pipelines, developing robust machine learning models, and conducting advanced analytics. Track record of delivering measurable results across fraud detection, customer segmentation, and computer vision, supported by multiple accepted research papers. Eager to apply deep analytical skills to transform complex datasets into actionable business insights.
+
+\cvsection{tools}{TECHNICAL SKILLS}
+\begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.1em]
+  \cvitem{Programming \& Query: Python, SQL, R.}
+  \cvitem{Data Engineering \& BI: SQL Server, Power BI.}
+  \cvitem{Machine Learning: Scikit-learn, XGBoost, LightGBM.}
+  \cvitem{Deep Learning: TensorFlow, PyTorch, YOLO, CNN, LSTM.}
+  \cvitem{LLM \& Retrieval: RAG, LangChain, Chroma, FAISS.}
+  \cvitem{Tools \& Cloud: Git, MongoDB, Streamlit, AWS (SageMaker, Lambda, S3).}
+\end{itemize}
+
+\cvsection{briefcase}{EXPERIENCE}
+\cvjobentry{Nano Factory}{Mar 2026 -- Present}{AI Engineer Intern}
+\begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.2em]
+  \cvitem{\textbf{Data/Model:} Fine-tuned YOLOX-tiny for seven WHO steps on 2,336 COCO images.}
+  \cvitem{\textbf{Active learning:} Proposed a collect--label--retrain loop for continuous model improvement.}
+  \cvitem{\textbf{Results:} AP50 85.0\%, AP@[0.50:0.95] 61.8\%, 5.91 ms/image, and 6/7 holdout matches.}
+\end{itemize}
+
+\vspace{0.45em}
+\cvjobentry{AWS}{Mar 2026 -- Jul 2026}{Cloud Engineer Intern}
+\begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.2em]
+  \cvitem{\textbf{Model:} Trained Random Forest and deployed a SageMaker real-time endpoint.}
+  \cvitem{\textbf{Pipeline:} Built API Gateway, Lambda, Kinesis, feature Lambda, and SageMaker fraud flow.}
+  \cvitem{\textbf{Operations:} Added SNS fraud alerts and Firehose-to-S3 prediction history.}
+\end{itemize}
+
+% Keep the complete research-and-awards block together when it fits in the
+% remaining space; otherwise it moves as one unit to the following page.
+\Needspace{0.30\textheight}
+\begin{samepage}
+\cvcompactsection{book}{RESEARCH PAPERS}
+\begin{itemize}[leftmargin=1.45em,itemsep=0em,topsep=0em]
+  \paperitem{REV-ECIT 2025}{Le Vi, Hoang Vu, NN Quynh Anh and Tien Do (2025), Accepted; Jul 2025 -- Oct 2025.}{CacaoShield: AI application to identify cocoa diseases from the Cacao Disease data set.}
+  \paperitem{Dao tao tu xa --- 20 nam hinh thanh va phat trien 2025}{Le Hoang Gia Vi, Hoang Nguyen Vu, Nguyen Ngoc Quynh Anh and Le Nhat Tung (2025), Accepted; Nov 2025.}{Research Factors Influencing Students' Acceptance of the Safe Exam Browser Tool in Online Exams Based on the Extended UTAUT Model.}
+  \paperitem{AIFMA 2025}{Le Hoang Gia Vi, Hoang Nguyen Vu, Nguyen Ngoc Quynh Anh and Le Nhat Tung (2025), Accepted; Dec 2025.}{Enhancing Fintech Fraud Detection Performance: A Hybrid Strategy Combining Deep Learning Bi-LSTM and SMOTE-ENN Data Balancing Technique.}
+  \paperitem{FJCAI2026}{Le Hoang Gia Vi, Hoang Nguyen Vu, Nguyen Ngoc Quynh Anh, Hoang Van Quy and Bui Danh Huong (2026), Accepted; Jan 2026 -- Mar 2026.}{Custom Lightweight Emotion Net (CLEN): A Customized Hybrid Neural Network Architecture for Emotion Recognition.}
+  \paperitem{ICEISD2026}{Vi Le, Danh-Huong Bui, Thi-Lieu Nguyen and Nhat-Tung Le, Accepted; Feb 2026 -- Apr 2026.}{GeFNO: Hybrid GRU-Fourier Neural Operator for Flood Water Level Forecasting and Deep Learning Comparative Study on Time Series.}
+\end{itemize}
+
+\cvcompactsection{trophy}{AWARDS}
+\begin{itemize}[leftmargin=1.45em,itemsep=0em,topsep=0em]
+  \researchitem{\textbf{HUTECH IT Got Talent 2024} --- Finalist (Nov 2024).}{AI fall-detection solution using Camera \& CSI signals with real-time email alerts.}
+\end{itemize}
+\end{samepage}
+
+\newpage
+
+\cvsection{briefcase}{PROJECTS}
+\cventry{DAGPT}{Aug 2025 -- Sep 2025}{Individual}
+\begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.2em]
+  \cvitem{\textbf{Enabled no-code data exploration:} Delivered a Streamlit LLM assistant that turns uploaded CSVs and natural-language questions into analyses and interactive charts.}
+\end{itemize}
+\normalsize\hspace{1.15em}GitHub: \cvlink{https://github.com/lehoanggiavi/dagpt}{github.com/lehoanggiavi/dagpt}
+
+\vspace{0.55em}
+\cventry{SMART CLASS --- Analysis Emotions Using DL \& AI in Education}{Mar 2025 -- Jun 2025}{Leader}
+\begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.2em]
+  \cvitem{\textbf{Achieved 90\% emotion-classification and 95\% identity-recognition accuracy} on the project dataset across real-time and video-based classroom monitoring.}
+  \cvitem{Visualized emotion trends to help teachers identify early intervention needs.}
+\end{itemize}
+\normalsize\hspace{1.15em}GitHub: \cvlink{https://github.com/lehoanggiavi/smart_class}{github.com/lehoanggiavi/smart\_class}
+
+\vspace{0.45em}
+\cventry{CREDIT CARD FRAUD DETECTION}{Oct 2025 -- Nov 2025}{Leader}
+\begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.2em]
+  \cvitem{\textbf{Achieved AUC 0.990 and Recall 0.953} on highly imbalanced card-transaction data, supporting more reliable fraud screening.}
+\end{itemize}
+\normalsize\hspace{1.15em}GitHub: \cvlink{https://github.com/lehoanggiavi/ccfd}{github.com/lehoanggiavi/ccfd}
+
+\vspace{0.45em}
+\cventry{XÓM BANK --- End-to-End Banking Analytics \& Segmentation}{Jul 2026}{Individual}
+\begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.2em]
+  \cvitem{\textbf{Data Architecture \& BI:} Built an end-to-end pipeline---SQL analysis $\rightarrow$ SQL Server data warehouse (star schema) $\rightarrow$ Power BI (DAX) $\rightarrow$ ML $\rightarrow$ portfolio---processing 157,224 transactions with verified data quality (19/19 checks passed; zero orphan FKs).}
+  \cvitem{\textbf{Advanced Analytics \& ML:} Applied K-Means clustering to segment 2,000+ customer profiles and analyze 7.53M+ in total spend, delivering actionable insights into user engagement and financial behaviors.}
+\end{itemize}
+\normalsize\hspace{1.15em}GitHub: \cvlink{https://github.com/lehoanggiavi/Banking}{github.com/lehoanggiavi/Banking}
+
+\cvsection{graduation-cap}{EDUCATION}
+\cventry{HUTECH}{Sep 2022 -- Present}{Engineering of Data Science}
+\normalsize GPA: 3.39/4.00 \quad\textbullet\quad Major: Data Science
+
+\cvsection{certificate}{CERTIFICATION}
+\begin{itemize}[leftmargin=1.75em,itemsep=0.1em,topsep=0.15em]
+  \cvitem{English Proficiency (B1 Equivalent) (2025)}
+\end{itemize}
+
+\end{document}
