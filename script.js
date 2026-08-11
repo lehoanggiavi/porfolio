@@ -3,6 +3,24 @@ const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)]
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+/* Role-specific portfolio views */
+const profiles = window.roleProfiles || {};
+const supportedRoles = Object.keys(profiles);
+const roleDisplayNames = {
+  ai: { en: "AI ENGINEER", vi: "KỸ SƯ AI" },
+  ds: { en: "DATA SCIENTIST", vi: "NHÀ KHOA HỌC DỮ LIỆU" },
+  da: { en: "DATA ANALYST", vi: "CHUYÊN VIÊN PHÂN TÍCH DỮ LIỆU" },
+};
+
+function getInitialRole() {
+  const requestedRole = new URLSearchParams(window.location.search).get("role");
+  if (supportedRoles.includes(requestedRole)) return requestedRole;
+  return "ai";
+}
+
+let currentRole = getInitialRole();
+let roleContentReady = false;
+
 /* English / Vietnamese language switch */
 let currentLanguage = "en";
 const languageToggle = $("#language-toggle");
@@ -179,17 +197,18 @@ function translateTextNodes(language) {
 
 function updateLanguageAttributes(language) {
   const isVietnamese = language === "vi";
+  const roleCopy = profiles[currentRole]?.copy?.[language];
   document.documentElement.lang = language;
   document.documentElement.dataset.language = language;
-  document.title = isVietnamese
+  document.title = roleCopy?.meta?.title || (isVietnamese
     ? "Le Hoang Gia Vi | Kỹ sư AI"
-    : "Le Hoang Gia Vi | AI Engineer";
+    : "Le Hoang Gia Vi | AI Engineer");
 
   const description = document.querySelector('meta[name="description"]');
   if (description) {
-    description.content = isVietnamese
+    description.content = roleCopy?.meta?.description || (isVietnamese
       ? "Portfolio Kỹ sư AI của Le Hoang Gia Vi với các dự án học máy, thị giác máy tính, hệ thống dữ liệu và AI ứng dụng"
-      : "Le Hoang Gia Vi — AI Engineer portfolio featuring machine learning, computer vision, data systems, and applied AI projects";
+      : "Le Hoang Gia Vi — AI Engineer portfolio featuring machine learning, computer vision, data systems, and applied AI projects");
   }
 
   languageToggle?.setAttribute(
@@ -227,11 +246,182 @@ function updateLanguageAttributes(language) {
   });
 }
 
+function setText(selector, value, scope = document) {
+  const element = $(selector, scope);
+  if (element) element.textContent = value;
+}
+
+function setTrustedHtml(selector, value) {
+  const element = $(selector);
+  if (element) element.innerHTML = value;
+}
+
+function setButtonLabel(selector, value) {
+  const element = $(selector);
+  if (!element) return;
+
+  const icon = $("iconify-icon", element);
+  element.replaceChildren(document.createTextNode(`${value} `));
+  if (icon) element.append(icon);
+}
+
+function setStatus(selector, value) {
+  const element = $(selector);
+  if (!element) return;
+
+  const dot = $(".status-dot", element) || document.createElement("span");
+  dot.className = "status-dot";
+  element.replaceChildren(dot, document.createTextNode(` ${value}`));
+}
+
+function setSplitHeading(selector, [lead, emphasis]) {
+  const element = $(selector);
+  if (!element) return;
+
+  const emphasisElement = document.createElement("em");
+  emphasisElement.textContent = emphasis;
+  element.replaceChildren(document.createTextNode(`${lead} `), emphasisElement);
+}
+
+function setTags(container, tags) {
+  if (!container) return;
+  container.replaceChildren(...tags.map((tag) => {
+    const item = document.createElement("span");
+    item.textContent = tag;
+    return item;
+  }));
+}
+
+function updateRoleProjectOrder(profile) {
+  if (!roleContentReady || !repoTrack) return;
+
+  repoCards.forEach((card) => {
+    const priority = profile.projectPriorities[card.dataset.projectId];
+    card.dataset.priority = String(priority);
+  });
+
+  repoCards
+    .sort((a, b) => Number(a.dataset.priority) - Number(b.dataset.priority))
+    .forEach((card, index) => {
+      repoTrack.append(card);
+      const number = $(".repo-card-number", card);
+      if (number) number.textContent = String(index + 1).padStart(2, "0");
+    });
+
+  repoCurrentIndex = 0;
+  applyRepoFilter(repoActiveFilter);
+}
+
+function updateRoleButtons() {
+  const labels = roleDisplayNames[currentRole];
+  $$(".role-switcher-options [data-role]").forEach((button) => {
+    const role = button.dataset.role;
+    const active = role === currentRole;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+    button.textContent = roleDisplayNames[role]?.[currentLanguage] || button.textContent;
+  });
+
+  setText("#role-brand-title", labels?.[currentLanguage] || "AI ENGINEER");
+  setText("#role-portrait-title", labels?.[currentLanguage] || "AI Engineer");
+  setText(
+    "#role-switcher-label",
+    currentLanguage === "vi" ? "Khám phá portfolio theo vị trí" : "Explore portfolio by role",
+  );
+}
+
+function applyRoleContent(role = currentRole) {
+  const profile = profiles[role];
+  const copy = profile?.copy?.[currentLanguage];
+  if (!copy) return;
+
+  document.body.dataset.activeRole = role;
+  setText("#role-eyebrow", copy.hero.eyebrow);
+  setText("#role-title-primary", copy.hero.titlePrimary);
+  setText("#role-title-secondary", copy.hero.titleSecondary);
+  setText("#role-hero-label", copy.hero.roleLabel);
+  setTrustedHtml("#role-hero-description", copy.hero.description);
+  setButtonLabel("#role-primary-action", copy.hero.primaryAction);
+  setStatus("#role-hero-status", copy.hero.status);
+  setText("#role-tech-label", currentLanguage === "vi" ? "Công nghệ trọng tâm" : "Focused technologies");
+
+  const technologyList = $("#role-tech-list");
+  if (technologyList) {
+    technologyList.replaceChildren(...copy.hero.technologies.map(([icon, label]) => {
+      const item = document.createElement("span");
+      const iconElement = document.createElement("iconify-icon");
+      iconElement.setAttribute("icon", icon);
+      item.append(iconElement, document.createTextNode(label));
+      return item;
+    }));
+  }
+
+  setSplitHeading("#role-about-heading", copy.about.heading);
+  setTrustedHtml("#role-about-first", copy.about.paragraphs[0]);
+  setTrustedHtml("#role-about-second", copy.about.paragraphs[1]);
+  $$("#role-about-points > div").forEach((point, index) => {
+    const [title, description] = copy.about.points[index] || [];
+    const copyContainer = $("span", point);
+    if (!copyContainer) return;
+    const strong = document.createElement("strong");
+    strong.textContent = title || "";
+    copyContainer.replaceChildren(strong, document.createTextNode(` ${description || ""}`));
+  });
+
+  setText("#role-expertise-kicker", copy.expertise.kicker);
+  setSplitHeading("#role-expertise-heading", copy.expertise.heading);
+  setText("#role-expertise-description", copy.expertise.description);
+  $$(".expertise-card").forEach((card, index) => {
+    const [title, description, tags] = copy.expertise.cards[index] || [];
+    setText("h3", title, card);
+    setText("p", description, card);
+    setTags($(".tag-row", card), tags || []);
+  });
+
+  setText("#role-projects-kicker", copy.projects.kicker);
+  setSplitHeading("#role-projects-heading", copy.projects.heading);
+  setText("#role-projects-subtitle", copy.projects.subtitle);
+
+  setSplitHeading("#role-contact-heading", copy.contact.heading);
+  setText("#role-contact-description", copy.contact.description);
+  setText("#role-footer-description", copy.footer.description);
+  const footerStatus = $("#role-footer-status");
+  if (footerStatus) {
+    const indicator = document.createElement("i");
+    footerStatus.replaceChildren(indicator, document.createTextNode(` ${copy.footer.status}`));
+  }
+
+  $$('[data-role-cv-link]').forEach((link) => {
+    link.setAttribute("href", profile.cvHref);
+  });
+
+  updateRoleButtons();
+  updateRoleProjectOrder(profile);
+}
+
+function updateRoleUrl() {
+  const url = new URL(window.location.href);
+  if (url.searchParams.get("role") === currentRole) return;
+  url.searchParams.set("role", currentRole);
+  window.history.pushState({ role: currentRole }, "", url);
+}
+
+function setRole(role, { updateUrl = true } = {}) {
+  if (!supportedRoles.includes(role)) return;
+
+  currentRole = role;
+  if (roleContentReady) applyRoleContent(role);
+  updateLanguageAttributes(currentLanguage);
+
+  if (updateUrl) updateRoleUrl();
+}
+
 function setLanguage(language) {
   if (language === currentLanguage) return;
 
   translateTextNodes(language);
   currentLanguage = language;
+  if (roleContentReady) applyRoleContent(currentRole);
   updateLanguageAttributes(language);
 
   try {
@@ -251,6 +441,15 @@ try {
 updateLanguageAttributes(currentLanguage);
 languageToggle?.addEventListener("click", () => {
   setLanguage(currentLanguage === "en" ? "vi" : "en");
+});
+
+$$('.role-switcher-options [data-role]').forEach((button) => {
+  button.addEventListener("click", () => setRole(button.dataset.role));
+});
+
+window.addEventListener("popstate", () => {
+  const requestedRole = new URLSearchParams(window.location.search).get("role");
+  if (supportedRoles.includes(requestedRole)) setRole(requestedRole, { updateUrl: false });
 });
 
 /* Page ready */
@@ -718,6 +917,10 @@ window.addEventListener("resize", () => {
 
 window.addEventListener("load", () => updateRepoCarousel({ animate: false }), { once: true });
 applyRepoFilter(repoActiveFilter);
+
+roleContentReady = true;
+applyRoleContent(currentRole);
+updateLanguageAttributes(currentLanguage);
 
 /* Neural network canvas */
 const canvas = $("#network-canvas");

@@ -37,7 +37,7 @@
 </span>
 <span class="brand-copy">
 <strong>GIA VI</strong>
-<small>AI ENGINEER</small>
+<small id="role-brand-title">AI ENGINEER</small>
 </span>
 </a>
 <div aria-label="Main navigation" class="desktop-nav">
@@ -53,7 +53,7 @@
 <iconify-icon icon="lucide:languages"></iconify-icon>
 <span>VI</span>
 </button>
-<a class="cv-button" href="assets/Le_Hoang_Gia_Vi_CV.pdf" rel="noopener noreferrer" target="_blank">
+<a class="cv-button" data-role-cv-link="" href="assets/Le_Hoang_Gia_Vi_CV_AI_Engineer.pdf" rel="noopener noreferrer" target="_blank">
 <iconify-icon icon="lucide:download"></iconify-icon>
 <span>Download CV</span>
 </a>
@@ -69,7 +69,7 @@
 <a href="#projects">Projects</a>
 <a href="#research">Research</a>
 <a href="#contact">Contact</a>
-<a href="assets/Le_Hoang_Gia_Vi_CV.pdf" rel="noopener noreferrer" target="_blank">Download CV</a>
+<a data-role-cv-link="" href="assets/Le_Hoang_Gia_Vi_CV_AI_Engineer.pdf" rel="noopener noreferrer" target="_blank">Download CV</a>
 </div>
 </nav>
 <main>
@@ -79,33 +79,33 @@
 <div aria-hidden="true" class="hero-grid"></div>
 <div class="container hero-layout">
 <div class="hero-copy">
-<div class="hero-eyebrow reveal reveal-up">
+<div class="hero-eyebrow reveal reveal-up" id="role-eyebrow">
 <iconify-icon icon="lucide:sparkles"></iconify-icon>
             AI ENGINEERING · COMPUTER VISION · LLM SYSTEMS
           </div>
 <h1 class="hero-title">
-<span class="title-line reveal-title">Building practical AI systems</span>
-<span class="title-line text-gradient reveal-title delay-1">from model to deployment.</span>
+<span class="title-line reveal-title" id="role-title-primary">Building practical AI systems</span>
+<span class="title-line text-gradient reveal-title delay-1" id="role-title-secondary">from model to deployment.</span>
 </h1>
-<p class="hero-role reveal reveal-up delay-2">
+<p class="hero-role reveal reveal-up delay-2" id="role-hero-label">
             Le Hoang Gia Vi — Fresher AI Engineer
           </p>
-<p class="hero-description reveal reveal-up delay-3">
+<p class="hero-description reveal reveal-up delay-3" id="role-hero-description">
             Final-year Data Science student and AI Engineer Intern with hands-on work in
             <strong>computer vision, machine learning, LLM/RAG and cloud AI</strong>.
             I build clear, useful AI applications from models, data and tests.
           </p>
 <div class="hero-actions reveal reveal-up delay-4">
-<a class="button button-primary magnetic" href="#projects">
+<a class="button button-primary magnetic" href="#projects" id="role-primary-action">
               Explore AI Projects
               <iconify-icon icon="lucide:arrow-right"></iconify-icon>
 </a>
-<a class="button button-secondary magnetic" href="assets/Le_Hoang_Gia_Vi_CV.pdf" rel="noopener noreferrer" target="_blank">
+<a class="button button-secondary magnetic" data-role-cv-link="" href="assets/Le_Hoang_Gia_Vi_CV_AI_Engineer.pdf" rel="noopener noreferrer" target="_blank">
               View CV
               <iconify-icon icon="lucide:file-text"></iconify-icon>
 </a>
 </div>
-<div class="hero-status reveal reveal-up delay-4">
+<div class="hero-status reveal reveal-up delay-4" id="role-hero-status">
 <span class="status-dot"></span>
             Open to Fresher AI Engineer opportunities
           </div>
@@ -115,7 +115,7 @@
 <figure class="section-image hero-portrait" data-parallax="0.035" data-tilt="">
 <img alt="Le Hoang Gia Vi professional portrait" onerror="this.src='images/placeholder-portrait.svg'" src="images/Vi_mini_3_1.jpg"/>
 <figcaption>
-<span>AI Engineer</span>
+<span id="role-portrait-title">AI Engineer</span>
 <strong>Machine Learning · Applied AI</strong>
 </figcaption>
 </figure>
@@ -130,8 +130,8 @@
 </div>
 </div>
 <div class="container hero-tech reveal reveal-up delay-4">
-<p>Focused technologies</p>
-<div>
+<p id="role-tech-label">Focused technologies</p>
+<div id="role-tech-list">
 <span><iconify-icon icon="simple-icons:python"></iconify-icon>Python</span>
 <span><iconify-icon icon="simple-icons:pytorch"></iconify-icon>PyTorch</span>
 <span><iconify-icon icon="simple-icons:tensorflow"></iconify-icon>TensorFlow</span>
@@ -141,6 +141,16 @@
 </div>
 </div>
 </header>
+<section aria-label="Explore portfolio by role" class="role-switcher-section">
+<div class="container role-switcher reveal reveal-up">
+<span class="role-switcher-label" id="role-switcher-label">Explore portfolio by role</span>
+<div aria-labelledby="role-switcher-label" class="role-switcher-options" role="group">
+<button aria-pressed="true" class="active" data-role="ai" type="button">AI Engineer</button>
+<button aria-pressed="false" data-role="ds" type="button">Data Scientist</button>
+<button aria-pressed="false" data-role="da" type="button">Data Analyst</button>
+</div>
+</div>
+</section>
 <!-- ABOUT -->
 <section class="section section-dark" id="about">
 <div aria-hidden="true" class="section-orb section-orb-left"></div>
@@ -157,18 +167,18 @@
 </div>
 <div class="content-column reveal reveal-right">
 <span class="section-kicker">ABOUT</span>
-<h2>From AI experiments to <em>useful systems.</em></h2>
-<p>
+<h2 id="role-about-heading">From AI experiments to <em>useful systems.</em></h2>
+<p id="role-about-first">
             I am a final-year <strong>Data Science</strong> student with hands-on experience
             in computer vision, machine learning, LLM-based applications and cloud AI deployment.
             My work covers model training, evaluation, real-time inference, retrieval systems
             and end-to-end AI pipelines.
           </p>
-<p>
+<p id="role-about-second">
             I care about AI systems that are accurate in tests and also simple to reproduce,
             efficient to run and useful in real applications.
           </p>
-<div class="about-points">
+<div class="about-points" id="role-about-points">
 <div>
 <iconify-icon icon="lucide:chart-no-axes-combined"></iconify-icon>
 <span>
@@ -213,9 +223,9 @@
 <div aria-hidden="true" class="section-orb section-orb-right"></div>
 <div class="container">
 <div class="section-heading reveal reveal-up">
-<span class="section-kicker">CORE EXPERTISE</span>
-<h2>Skills for building <em>practical AI systems.</em></h2>
-<p>
+<span class="section-kicker" id="role-expertise-kicker">CORE EXPERTISE</span>
+<h2 id="role-expertise-heading">Skills for building <em>practical AI systems.</em></h2>
+<p id="role-expertise-description">
             I focus on model development, computer vision, retrieval-based applications
             and clean engineering work that turns experiments into usable systems.
           </p>
@@ -336,11 +346,11 @@
 <div class="container">
 <div class="projects-heading projects-heading-full reveal reveal-up">
 <div>
-<span class="section-kicker">FEATURED AI SYSTEMS</span>
-<h2>Selected work showing how I <em>build AI systems.</em></h2>
+<span class="section-kicker" id="role-projects-kicker">FEATURED AI SYSTEMS</span>
+<h2 id="role-projects-heading">Selected work showing how I <em>build AI systems.</em></h2>
 </div>
 <div class="projects-heading-copy">
-<p class="projects-subtitle">The first three projects are the strongest examples from my CV. Use the arrows to explore more AI, data and research repositories.</p>
+<p class="projects-subtitle" id="role-projects-subtitle">The first three projects are the strongest examples from my CV. Use the arrows to explore more AI, data and research repositories.</p>
 <div aria-live="polite" class="projects-summary"><iconify-icon icon="lucide:gallery-horizontal-end"></iconify-icon><strong id="repoRange">1–3</strong><span>of <b id="repoCount">9</b> repositories</span></div>
 </div>
 </div>
@@ -358,7 +368,7 @@
 </a>
 </div>
 <div class="repo-carousel-shell reveal reveal-up"><button aria-label="Show previous repositories" class="repo-carousel-button repo-carousel-prev" id="repoPrev" type="button"><iconify-icon icon="lucide:arrow-left"></iconify-icon></button><div class="repo-carousel-viewport" id="repoViewport"><div aria-live="polite" class="repo-carousel-track" id="repoTrack">
-<article aria-label="Xóm Bank" class="repo-card spotlight-card" data-category="data" data-priority="6" role="group" tabindex="0">
+<article aria-label="Xóm Bank" class="repo-card spotlight-card" data-category="data" data-priority="6" data-project-id="xom-bank" role="group" tabindex="0">
 <a aria-label="Open Xóm Bank repository" class="repo-card-media" href="https://github.com/lehoanggiavi/Banking" rel="noopener noreferrer" target="_blank">
 <img alt="Xóm Bank banking analytics and customer segmentation visual" decoding="async" loading="lazy" src="images/projects/xom-bank-cover.png"/>
 <span class="repo-card-number">01</span><span class="repo-open-icon"><iconify-icon icon="lucide:arrow-up-right"></iconify-icon></span>
@@ -371,7 +381,7 @@
 <a class="repo-link" href="https://github.com/lehoanggiavi/Banking" rel="noopener noreferrer" target="_blank">View repository <iconify-icon icon="lucide:github"></iconify-icon></a>
 </div>
 </article>
-<article aria-label="Smart Class" class="repo-card spotlight-card" data-category="cv" data-priority="1" role="group" tabindex="0">
+<article aria-label="Smart Class" class="repo-card spotlight-card" data-category="cv" data-priority="1" data-project-id="smart-class" role="group" tabindex="0">
 <a aria-label="Open Smart Class repository" class="repo-card-media" href="https://github.com/lehoanggiavi/smart_class" rel="noopener noreferrer" target="_blank">
 <img alt="Smart Class intelligent classroom and emotion analytics visual" decoding="async" loading="lazy" src="images/projects/smart-class-cover.png"/>
 <span class="repo-card-number">02</span>
@@ -387,7 +397,7 @@
 </a>
 </div>
 </article>
-<article aria-label="CLEN" class="repo-card spotlight-card" data-category="cv" data-priority="4" role="group" tabindex="0">
+<article aria-label="CLEN" class="repo-card spotlight-card" data-category="cv" data-priority="4" data-project-id="clen" role="group" tabindex="0">
 <a aria-label="Open CLEN repository" class="repo-card-media" href="https://github.com/lehoanggiavi/CLEN" rel="noopener noreferrer" target="_blank">
 <img alt="CLEN facial emotion recognition model visual" decoding="async" loading="lazy" src="images/projects/clen-cover.png"/>
 <span class="repo-card-number">03</span>
@@ -403,7 +413,7 @@
 </a>
 </div>
 </article>
-<article aria-label="DAGPT" class="repo-card spotlight-card" data-category="nlp" data-priority="3" role="group" tabindex="0">
+<article aria-label="DAGPT" class="repo-card spotlight-card" data-category="nlp" data-priority="3" data-project-id="dagpt" role="group" tabindex="0">
 <a aria-label="Open DAGPT repository" class="repo-card-media" href="https://github.com/lehoanggiavi/dagpt" rel="noopener noreferrer" target="_blank">
 <img alt="DAGPT natural-language data analysis visual" decoding="async" loading="lazy" src="images/projects/dagpt-cover.png"/>
 <span class="repo-card-number">04</span><span class="repo-open-icon"><iconify-icon icon="lucide:arrow-up-right"></iconify-icon></span>
@@ -416,7 +426,7 @@
 <a class="repo-link" href="https://github.com/lehoanggiavi/dagpt" rel="noopener noreferrer" target="_blank">View repository <iconify-icon icon="lucide:github"></iconify-icon></a>
 </div>
 </article>
-<article aria-label="CacaoShield" class="repo-card spotlight-card" data-category="cv" data-priority="5" role="group" tabindex="0">
+<article aria-label="CacaoShield" class="repo-card spotlight-card" data-category="cv" data-priority="5" data-project-id="cacao-shield" role="group" tabindex="0">
 <a aria-label="Open CacaoShield repository" class="repo-card-media" href="https://github.com/lehoanggiavi/cacao_shield" rel="noopener noreferrer" target="_blank">
 <img alt="CacaoShield cocoa disease detection visual" decoding="async" loading="lazy" src="images/projects/cacao-shield-cover.png"/>
 <span class="repo-card-number">05</span><span class="repo-open-icon"><iconify-icon icon="lucide:arrow-up-right"></iconify-icon></span>
@@ -429,7 +439,7 @@
 <a class="repo-link" href="https://github.com/lehoanggiavi/cacao_shield" rel="noopener noreferrer" target="_blank">View repository <iconify-icon icon="lucide:github"></iconify-icon></a>
 </div>
 </article>
-<article aria-label="Fraud Detection" class="repo-card spotlight-card" data-category="ml" data-priority="2" role="group" tabindex="0">
+<article aria-label="Fraud Detection" class="repo-card spotlight-card" data-category="ml" data-priority="2" data-project-id="fraud-detection" role="group" tabindex="0">
 <a aria-label="Open Fraud Detection repository" class="repo-card-media" href="https://github.com/lehoanggiavi/ccfd" rel="noopener noreferrer" target="_blank">
 <img alt="Fraud Detection financial risk analysis visual" decoding="async" loading="lazy" src="images/projects/fraud-detection-cover.png"/>
 <span class="repo-card-number">06</span><span class="repo-open-icon"><iconify-icon icon="lucide:arrow-up-right"></iconify-icon></span>
@@ -442,7 +452,7 @@
 <a class="repo-link" href="https://github.com/lehoanggiavi/ccfd" rel="noopener noreferrer" target="_blank">View repository <iconify-icon icon="lucide:github"></iconify-icon></a>
 </div>
 </article>
-<article aria-label="Parking Slot" class="repo-card spotlight-card" data-category="cv" data-priority="7" role="group" tabindex="0">
+<article aria-label="Parking Slot" class="repo-card spotlight-card" data-category="cv" data-priority="7" data-project-id="parking-slot" role="group" tabindex="0">
 <a aria-label="Open Parking Slot repository" class="repo-card-media" href="https://github.com/lehoanggiavi/Parking_Car_Slot/tree/master" rel="noopener noreferrer" target="_blank">
 <img alt="Parking Slot computer vision availability visual" decoding="async" loading="lazy" src="images/projects/parking-slot-cover.png"/>
 <span class="repo-card-number">07</span><span class="repo-open-icon"><iconify-icon icon="lucide:arrow-up-right"></iconify-icon></span>
@@ -455,7 +465,7 @@
 <a class="repo-link" href="https://github.com/lehoanggiavi/Parking_Car_Slot/tree/master" rel="noopener noreferrer" target="_blank">View repository <iconify-icon icon="lucide:github"></iconify-icon></a>
 </div>
 </article>
-<article aria-label="Heart Disease" class="repo-card spotlight-card" data-category="ml" data-priority="8" role="group" tabindex="0">
+<article aria-label="Heart Disease" class="repo-card spotlight-card" data-category="ml" data-priority="8" data-project-id="heart-disease" role="group" tabindex="0">
 <a aria-label="Open Heart Disease repository" class="repo-card-media" href="https://github.com/lehoanggiavi/heart_disease" rel="noopener noreferrer" target="_blank">
 <img alt="Heart Disease clinical risk classification visual" decoding="async" loading="lazy" src="images/projects/heart-disease-cover.png"/>
 <span class="repo-card-number">08</span><span class="repo-open-icon"><iconify-icon icon="lucide:arrow-up-right"></iconify-icon></span>
@@ -468,7 +478,7 @@
 <a class="repo-link" href="https://github.com/lehoanggiavi/heart_disease" rel="noopener noreferrer" target="_blank">View repository <iconify-icon icon="lucide:github"></iconify-icon></a>
 </div>
 </article>
-<article aria-label="VNStock AI Analyst" class="repo-card spotlight-card" data-category="nlp" data-priority="9" role="group" tabindex="0">
+<article aria-label="VNStock AI Analyst" class="repo-card spotlight-card" data-category="nlp" data-priority="9" data-project-id="vnstock-ai" role="group" tabindex="0">
 <a aria-label="Open VNStock AI Analyst repository" class="repo-card-media" href="https://github.com/lehoanggiavi/VNStock_AI" rel="noopener noreferrer" target="_blank">
 <img alt="VNStock AI Analyst financial RAG visual" decoding="async" loading="lazy" src="images/projects/vnstock-ai-cover.png"/>
 <span class="repo-card-number">09</span><span class="repo-open-icon"><iconify-icon icon="lucide:arrow-up-right"></iconify-icon></span>
@@ -577,8 +587,8 @@
 </figure>
 <div>
 <span class="section-kicker">CONTACT</span>
-<h2>Let's build useful <em>AI solutions.</em></h2>
-<p>
+<h2 id="role-contact-heading">Let's build useful <em>AI solutions.</em></h2>
+<p id="role-contact-description">
               I am currently seeking an AI Engineer role where I can contribute to
               machine learning, computer vision, retrieval and cloud AI solutions.
             </p>
@@ -620,7 +630,7 @@
 <iconify-icon icon="lucide:brain-circuit"></iconify-icon>
 <span>GIA VI</span>
 </a>
-<p>Building practical AI systems with clear research and engineering thinking.</p>
+<p id="role-footer-description">Building practical AI systems with clear research and engineering thinking.</p>
 </div>
 <div>
 <h4>Portfolio</h4>
@@ -632,7 +642,7 @@
 <h4>Research</h4>
 <a href="#research">Publications</a>
 <a href="#experience">Experience</a>
-<a href="assets/Le_Hoang_Gia_Vi_CV.pdf" rel="noopener noreferrer" target="_blank">Download CV</a>
+<a data-role-cv-link="" href="assets/Le_Hoang_Gia_Vi_CV_AI_Engineer.pdf" rel="noopener noreferrer" target="_blank">Download CV</a>
 </div>
 <div>
 <h4>Connect</h4>
@@ -643,9 +653,10 @@
 </div>
 <div class="container footer-bottom">
 <p>© 2026 Le Hoang Gia Vi. All rights reserved.</p>
-<span><i></i> Available for AI Engineer opportunities</span>
+<span id="role-footer-status"><i></i> Available for AI Engineer opportunities</span>
 </div>
 </footer>
+<script src="role-profiles.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

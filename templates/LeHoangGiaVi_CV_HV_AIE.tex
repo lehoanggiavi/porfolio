@@ -1,5 +1,6 @@
 % !TEX program = xelatex
-% Compile with: xelatex -interaction=nonstopmode LeHoangGiaVi_CV_AnhNhatStyle.tex
+% Build the AI version: xelatex -interaction=nonstopmode LeHoangGiaVi_CV_HV_AIE.tex
+% Build DS/DA versions: xelatex -jobname=<output> "\def\cvtarget{ds|da}\input{LeHoangGiaVi_CV_HV_AIE.tex}"
 \documentclass[10pt,letterpaper]{article}
 
 \usepackage[letterpaper,top=0.52in,bottom=0.50in,left=0.75in,right=0.75in]{geometry}
@@ -19,6 +20,11 @@
 \usepackage{tabularx}
 \usepackage{array}
 \usepackage{needspace}
+\usepackage{etoolbox}
+
+% One canonical CV source. Build a tailored version with, for example:
+% xelatex "\def\cvtarget{ds}\input{LeHoangGiaVi_CV_HV_AIE.tex}"
+\providecommand{\cvtarget}{ai}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -78,11 +84,80 @@
 }
 \newcommand{\cvlink}[2]{\href{#1}{\underline{#2}}}
 
+\newcommand{\cvrole}{AI Engineer}
+\newcommand{\cvsummary}{Final-year Data Science student seeking an AI Engineer role. Experienced in computer vision, machine learning, LLM/RAG applications and cloud AI deployment. I build practical systems from data and model evaluation through to real-time inference, retrieval and deployment.}
+\newcommand{\cvskills}{%
+  \cvitem{Programming \& Query: Python, SQL, R.}
+  \cvitem{Machine Learning: Scikit-learn, XGBoost, LightGBM.}
+  \cvitem{Deep Learning \& Vision: TensorFlow, PyTorch, YOLO, CNN, LSTM.}
+  \cvitem{LLM \& Retrieval: RAG, LangChain, Chroma, FAISS.}
+  \cvitem{Data, Tools \& Cloud: SQL Server, Power BI, Git, MongoDB, Streamlit, AWS (SageMaker, Lambda, S3).}
+}
+
+\ifdefstring{\cvtarget}{ds}{%
+  \renewcommand{\cvrole}{Data Scientist}%
+  \renewcommand{\cvsummary}{Final-year Data Science student seeking a Data Scientist role. Applied experience in predictive modeling, imbalanced classification, customer segmentation and model evaluation. I turn data questions into reproducible analyses and useful machine-learning systems.}%
+  \renewcommand{\cvskills}{%
+    \cvitem{Programming \& Query: Python, SQL, R.}
+    \cvitem{Data Analysis: Pandas, NumPy, SQL Server, Power BI.}
+    \cvitem{Machine Learning \& Evaluation: Scikit-learn, XGBoost, LightGBM, feature preparation and imbalanced-data workflows.}
+    \cvitem{Deep Learning: TensorFlow, PyTorch, CNN, LSTM, YOLO.}
+    \cvitem{Tools \& Delivery: Git, MongoDB, Streamlit, AWS (SageMaker, Lambda, S3).}
+  }%
+}{%
+  \ifdefstring{\cvtarget}{da}{%
+    \renewcommand{\cvrole}{Data Analyst}%
+    \renewcommand{\cvsummary}{Final-year Data Science student seeking a Data Analyst role. Applied experience in SQL analysis, data warehousing, Power BI and customer segmentation. I make complex data easier to validate, explore and use in decision-making.}%
+    \renewcommand{\cvskills}{%
+      \cvitem{Programming \& Query: SQL, Python, R.}
+      \cvitem{Data Analysis: Pandas, NumPy, exploratory analysis and customer segmentation.}
+      \cvitem{Data Warehousing \& BI: SQL Server, star schema, Power BI, DAX.}
+      \cvitem{Supporting ML: Scikit-learn, XGBoost, LightGBM, K-Means.}
+      \cvitem{Tools \& Delivery: Git, MongoDB, Streamlit, AWS (SageMaker, Lambda, S3).}
+    }%
+  }{}%
+}
+\hypersetup{pdftitle={Le Hoang Gia Vi --- \cvrole\ CV}}
+
+\newcommand{\projectdagpt}{%
+  \cventry{DAGPT}{Aug 2025 -- Sep 2025}{Individual}
+  \begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.2em]
+    \cvitem{\textbf{Enabled no-code data exploration:} Delivered a Streamlit LLM assistant that turns uploaded CSVs and natural-language questions into analyses and interactive charts.}
+  \end{itemize}
+  \normalsize\hspace{1.15em}GitHub: \cvlink{https://github.com/lehoanggiavi/dagpt}{github.com/lehoanggiavi/dagpt}
+}
+
+\newcommand{\projectsmartclass}{%
+  \cventry{SMART CLASS --- Analysis Emotions Using DL \& AI in Education}{Mar 2025 -- Jun 2025}{Leader}
+  \begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.2em]
+    \cvitem{\textbf{Achieved 90\% emotion-classification and 95\% identity-recognition accuracy} on the project dataset across real-time and video-based classroom monitoring.}
+    \cvitem{Visualized emotion trends to help teachers identify early intervention needs.}
+  \end{itemize}
+  \normalsize\hspace{1.15em}GitHub: \cvlink{https://github.com/lehoanggiavi/smart_class}{github.com/lehoanggiavi/smart\_class}
+}
+
+\newcommand{\projectfraud}{%
+  \cventry{CREDIT CARD FRAUD DETECTION}{Oct 2025 -- Nov 2025}{Leader}
+  \begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.2em]
+    \cvitem{\textbf{Achieved AUC 0.990 and Recall 0.953} on highly imbalanced card-transaction data, supporting more reliable fraud screening.}
+  \end{itemize}
+  \normalsize\hspace{1.15em}GitHub: \cvlink{https://github.com/lehoanggiavi/ccfd}{github.com/lehoanggiavi/ccfd}
+}
+
+\newcommand{\projectxombank}{%
+  \cventry{XÓM BANK --- End-to-End Banking Analytics \& Segmentation}{Jul 2026}{Individual}
+  \begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.2em]
+    \cvitem{\textbf{Data Architecture \& BI:} Built an end-to-end pipeline---SQL analysis $\rightarrow$ SQL Server data warehouse (star schema) $\rightarrow$ Power BI (DAX) $\rightarrow$ ML $\rightarrow$ portfolio---processing 157,224 transactions with verified data quality (19/19 checks passed; zero orphan FKs).}
+    \cvitem{\textbf{Advanced Analytics \& ML:} Applied K-Means clustering to segment 2,000+ customer profiles and analyze 7.53M+ in total spend, delivering actionable insights into user engagement and financial behaviors.}
+  \end{itemize}
+  \normalsize\hspace{1.15em}GitHub: \cvlink{https://github.com/lehoanggiavi/Banking}{github.com/lehoanggiavi/Banking}
+}
+
 \begin{document}
 
 \begin{center}
   {\fontsize{20}{23}\selectfont\bfseries LE HOANG GIA VI}\\[0.25em]
-  {\fontsize{17}{20}\selectfont\bfseries AI Engineer}\\[0.5em]
+  {\fontsize{17}{20}\selectfont\bfseries \cvrole}\\[0.5em]
   {\small
   \faIcon{map-marker-alt}\hspace{0.2em}Thu Duc District
   \quad
@@ -97,16 +172,11 @@
 
 \cvsection{user}{SUMMARY}
 \normalsize
-Final-year Data Science student seeking a AI Engineer role. Experienced in designing end-to-end data pipelines, developing robust machine learning models, and conducting advanced analytics. Track record of delivering measurable results across fraud detection, customer segmentation, and computer vision, supported by multiple accepted research papers. Eager to apply deep analytical skills to transform complex datasets into actionable business insights.
+\cvsummary
 
 \cvsection{tools}{TECHNICAL SKILLS}
 \begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.1em]
-  \cvitem{Programming \& Query: Python, SQL, R.}
-  \cvitem{Data Engineering \& BI: SQL Server, Power BI.}
-  \cvitem{Machine Learning: Scikit-learn, XGBoost, LightGBM.}
-  \cvitem{Deep Learning: TensorFlow, PyTorch, YOLO, CNN, LSTM.}
-  \cvitem{LLM \& Retrieval: RAG, LangChain, Chroma, FAISS.}
-  \cvitem{Tools \& Cloud: Git, MongoDB, Streamlit, AWS (SageMaker, Lambda, S3).}
+  \cvskills
 \end{itemize}
 
 \cvsection{briefcase}{EXPERIENCE}
@@ -147,34 +217,24 @@ Final-year Data Science student seeking a AI Engineer role. Experienced in desig
 \newpage
 
 \cvsection{briefcase}{PROJECTS}
-\cventry{DAGPT}{Aug 2025 -- Sep 2025}{Individual}
-\begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.2em]
-  \cvitem{\textbf{Enabled no-code data exploration:} Delivered a Streamlit LLM assistant that turns uploaded CSVs and natural-language questions into analyses and interactive charts.}
-\end{itemize}
-\normalsize\hspace{1.15em}GitHub: \cvlink{https://github.com/lehoanggiavi/dagpt}{github.com/lehoanggiavi/dagpt}
-
-\vspace{0.55em}
-\cventry{SMART CLASS --- Analysis Emotions Using DL \& AI in Education}{Mar 2025 -- Jun 2025}{Leader}
-\begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.2em]
-  \cvitem{\textbf{Achieved 90\% emotion-classification and 95\% identity-recognition accuracy} on the project dataset across real-time and video-based classroom monitoring.}
-  \cvitem{Visualized emotion trends to help teachers identify early intervention needs.}
-\end{itemize}
-\normalsize\hspace{1.15em}GitHub: \cvlink{https://github.com/lehoanggiavi/smart_class}{github.com/lehoanggiavi/smart\_class}
-
-\vspace{0.45em}
-\cventry{CREDIT CARD FRAUD DETECTION}{Oct 2025 -- Nov 2025}{Leader}
-\begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.2em]
-  \cvitem{\textbf{Achieved AUC 0.990 and Recall 0.953} on highly imbalanced card-transaction data, supporting more reliable fraud screening.}
-\end{itemize}
-\normalsize\hspace{1.15em}GitHub: \cvlink{https://github.com/lehoanggiavi/ccfd}{github.com/lehoanggiavi/ccfd}
-
-\vspace{0.45em}
-\cventry{XÓM BANK --- End-to-End Banking Analytics \& Segmentation}{Jul 2026}{Individual}
-\begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.2em]
-  \cvitem{\textbf{Data Architecture \& BI:} Built an end-to-end pipeline---SQL analysis $\rightarrow$ SQL Server data warehouse (star schema) $\rightarrow$ Power BI (DAX) $\rightarrow$ ML $\rightarrow$ portfolio---processing 157,224 transactions with verified data quality (19/19 checks passed; zero orphan FKs).}
-  \cvitem{\textbf{Advanced Analytics \& ML:} Applied K-Means clustering to segment 2,000+ customer profiles and analyze 7.53M+ in total spend, delivering actionable insights into user engagement and financial behaviors.}
-\end{itemize}
-\normalsize\hspace{1.15em}GitHub: \cvlink{https://github.com/lehoanggiavi/Banking}{github.com/lehoanggiavi/Banking}
+\ifdefstring{\cvtarget}{ds}{%
+  \projectfraud\vspace{0.45em}
+  \projectxombank\vspace{0.45em}
+  \projectdagpt\vspace{0.55em}
+  \projectsmartclass
+}{%
+  \ifdefstring{\cvtarget}{da}{%
+    \projectxombank\vspace{0.45em}
+    \projectdagpt\vspace{0.55em}
+    \projectfraud\vspace{0.45em}
+    \projectsmartclass
+  }{%
+    \projectdagpt\vspace{0.55em}
+    \projectsmartclass\vspace{0.45em}
+    \projectfraud\vspace{0.45em}
+    \projectxombank
+  }%
+}
 
 \cvsection{graduation-cap}{EDUCATION}
 \cventry{HUTECH}{Sep 2022 -- Present}{Engineering of Data Science}
