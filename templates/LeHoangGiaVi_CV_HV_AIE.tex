@@ -85,6 +85,7 @@
 \newcommand{\cvlink}[2]{\href{#1}{\underline{#2}}}
 
 \newcommand{\cvrole}{AI Engineer}
+\newcommand{\cvportfoliohref}{https://lehoanggiavi.github.io/portfolio/?role=ai}
 \newcommand{\cvsummary}{Final-year Data Science student seeking an AI Engineer role. Experienced in computer vision, machine learning, LLM/RAG applications and cloud AI deployment. I build practical systems from data and model evaluation through to real-time inference, retrieval and deployment.}
 \newcommand{\cvskills}{%
   \cvitem{Programming \& Query: Python, SQL, R.}
@@ -96,6 +97,7 @@
 
 \ifdefstring{\cvtarget}{ds}{%
   \renewcommand{\cvrole}{Data Scientist}%
+  \renewcommand{\cvportfoliohref}{https://lehoanggiavi.github.io/portfolio/?role=ds}%
   \renewcommand{\cvsummary}{Final-year Data Science student seeking a Data Scientist role. Applied experience in predictive modeling, imbalanced classification, customer segmentation and model evaluation. I turn data questions into reproducible analyses and useful machine-learning systems.}%
   \renewcommand{\cvskills}{%
     \cvitem{Programming \& Query: Python, SQL, R.}
@@ -107,6 +109,7 @@
 }{%
   \ifdefstring{\cvtarget}{da}{%
     \renewcommand{\cvrole}{Data Analyst}%
+    \renewcommand{\cvportfoliohref}{https://lehoanggiavi.github.io/portfolio/?role=da}%
     \renewcommand{\cvsummary}{Final-year Data Science student seeking a Data Analyst role. Applied experience in SQL analysis, data warehousing, Power BI and customer segmentation. I make complex data easier to validate, explore and use in decision-making.}%
     \renewcommand{\cvskills}{%
       \cvitem{Programming \& Query: SQL, Python, R.}
@@ -153,6 +156,15 @@
   \normalsize\hspace{1.15em}GitHub: \cvlink{https://github.com/lehoanggiavi/Banking}{github.com/lehoanggiavi/Banking}
 }
 
+\newcommand{\projectfbsupplychain}{%
+  \cventry{F\&B SUPPLY CHAIN PERFORMANCE DASHBOARD}{Aug 2026}{Individual}
+  \begin{itemize}[leftmargin=1.75em,itemsep=0.12em,topsep=0.2em]
+    \cvitem{\textbf{Built an analytics-ready Power BI report:} Performed Pandas EDA and data-quality checks, removed duplicate channel values in Power Query, and modeled dimension-to-fact relationships for order and inventory analysis.}
+    \cvitem{\textbf{Validated 11 baseline KPIs} across EDA and DAX/Power BI---including 2,200 orders, revenue 605,608.83, gross margin 34.40\%, OTIF 92.55\%, and 164 late orders---then delivered Overview, Product, and Supplier views for investigation prioritization.}
+  \end{itemize}
+  \normalsize\hspace{1.15em}GitHub: \cvlink{https://github.com/lehoanggiavi/F-B-Supply-Chain}{github.com/lehoanggiavi/F-B-Supply-Chain}
+}
+
 \begin{document}
 
 \begin{center}
@@ -167,7 +179,7 @@
   \quad
   \faIcon{github}\hspace{0.2em}\cvlink{https://github.com/lehoanggiavi}{GitHub}
   \quad
-  \faIcon{globe}\hspace{0.2em}\cvlink{https://lehoanggiavi.github.io/portfolio}{Portfolio}}
+  \faIcon{globe}\hspace{0.2em}\cvlink{\cvportfoliohref}{Portfolio}}
 \end{center}
 
 \cvsection{user}{SUMMARY}
@@ -224,10 +236,10 @@
   \projectsmartclass
 }{%
   \ifdefstring{\cvtarget}{da}{%
+    \projectfbsupplychain\vspace{0.45em}
     \projectxombank\vspace{0.45em}
     \projectdagpt\vspace{0.55em}
     \projectfraud\vspace{0.45em}
-    \projectsmartclass
   }{%
     \projectdagpt\vspace{0.55em}
     \projectsmartclass\vspace{0.45em}

@@ -7,6 +7,7 @@ const roleProfiles = require("../role-profiles.js");
 
 const expectedRoles = ["ai", "ds", "da"];
 const expectedProjects = [
+  "fnb-supply-chain",
   "xom-bank",
   "smart-class",
   "clen",
@@ -46,7 +47,7 @@ test("each role ranks every repository exactly once", () => {
     assert.deepEqual(Object.keys(profile.projectPriorities).sort(), expectedProjects.sort());
     assert.deepEqual(
       Object.values(profile.projectPriorities).sort((a, b) => a - b),
-      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     );
   });
 });
@@ -54,7 +55,8 @@ test("each role ranks every repository exactly once", () => {
 test("project priorities reflect each role's strongest evidence", () => {
   assert.equal(roleProfiles.ai.projectPriorities["smart-class"], 1);
   assert.equal(roleProfiles.ds.projectPriorities["fraud-detection"], 1);
-  assert.equal(roleProfiles.da.projectPriorities["xom-bank"], 1);
+  assert.equal(roleProfiles.da.projectPriorities["fnb-supply-chain"], 1);
+  assert.equal(roleProfiles.da.projectPriorities["xom-bank"], 2);
 });
 
 test("the published page loads role data before its behavior and exposes all role controls", () => {
@@ -70,8 +72,27 @@ test("the published page loads role data before its behavior and exposes all rol
   expectedProjects.forEach((project) => {
     assert.match(html, new RegExp(`data-project-id="${project}"`));
   });
+  assert.match(
+    html,
+    /<article aria-label="F&amp;B Supply Chain"[\s\S]*?src="images\/projects\/fnb-supply-chain-cover\.png"/,
+  );
+  const fnbCover = path.join(__dirname, "..", "images", "projects", "fnb-supply-chain-cover.png");
+  assert.ok(fs.existsSync(fnbCover), "Missing F&B Supply Chain project cover");
+  assert.ok(fs.statSync(fnbCover).size > 100_000, "F&B Supply Chain project cover is unexpectedly small");
   assert.match(script, /\.role-switcher-options \[data-role\]/);
   assert.doesNotMatch(script, /\$\$\('\[data-role\]'\)/);
+});
+
+test("each CV deep-links its Portfolio hyperlink to the matching role", () => {
+  const template = fs.readFileSync(
+    path.join(__dirname, "..", "templates", "LeHoangGiaVi_CV_HV_AIE.tex"),
+    "utf8",
+  );
+
+  assert.match(template, /\\newcommand\{\\cvportfoliohref\}\{https:\/\/lehoanggiavi\.github\.io\/portfolio\/\?role=ai\}/);
+  assert.match(template, /\\renewcommand\{\\cvportfoliohref\}\{https:\/\/lehoanggiavi\.github\.io\/portfolio\/\?role=ds\}/);
+  assert.match(template, /\\renewcommand\{\\cvportfoliohref\}\{https:\/\/lehoanggiavi\.github\.io\/portfolio\/\?role=da\}/);
+  assert.match(template, /\\cvlink\{\\cvportfoliohref\}\{Portfolio\}/);
 });
 
 test("every role points to a published CV PDF", () => {

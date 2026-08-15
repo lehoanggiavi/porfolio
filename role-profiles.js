@@ -2,6 +2,7 @@ const roleProfiles = {
   ai: {
     cvHref: "assets/Le_Hoang_Gia_Vi_CV_AI_Engineer.pdf",
     projectPriorities: {
+      "fnb-supply-chain": 10,
       "xom-bank": 6,
       "smart-class": 1,
       clen: 4,
@@ -136,15 +137,16 @@ const roleProfiles = {
   ds: {
     cvHref: "assets/Le_Hoang_Gia_Vi_CV_Data_Scientist.pdf",
     projectPriorities: {
+      "fnb-supply-chain": 3,
       "xom-bank": 2,
-      "smart-class": 4,
-      clen: 7,
-      dagpt: 5,
-      "cacao-shield": 8,
+      "smart-class": 5,
+      clen: 8,
+      dagpt: 6,
+      "cacao-shield": 9,
       "fraud-detection": 1,
-      "parking-slot": 9,
-      "heart-disease": 3,
-      "vnstock-ai": 6,
+      "parking-slot": 10,
+      "heart-disease": 4,
+      "vnstock-ai": 7,
     },
     copy: {
       en: {
@@ -270,15 +272,16 @@ const roleProfiles = {
   da: {
     cvHref: "assets/Le_Hoang_Gia_Vi_CV_Data_Analyst.pdf",
     projectPriorities: {
-      "xom-bank": 1,
-      "smart-class": 6,
-      clen: 8,
-      dagpt: 2,
-      "cacao-shield": 9,
-      "fraud-detection": 3,
-      "parking-slot": 7,
-      "heart-disease": 4,
-      "vnstock-ai": 5,
+      "fnb-supply-chain": 1,
+      "xom-bank": 2,
+      "smart-class": 7,
+      clen: 9,
+      dagpt: 3,
+      "cacao-shield": 10,
+      "fraud-detection": 4,
+      "parking-slot": 8,
+      "heart-disease": 5,
+      "vnstock-ai": 6,
     },
     copy: {
       en: {
