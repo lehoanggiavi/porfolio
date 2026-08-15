@@ -53,10 +53,25 @@ test("each role ranks every repository exactly once", () => {
 });
 
 test("project priorities reflect each role's strongest evidence", () => {
-  assert.equal(roleProfiles.ai.projectPriorities["smart-class"], 1);
+  assert.equal(roleProfiles.ai.projectPriorities["vnstock-ai"], 1);
+  assert.equal(roleProfiles.ai.projectPriorities.dagpt, 2);
   assert.equal(roleProfiles.ds.projectPriorities["fraud-detection"], 1);
   assert.equal(roleProfiles.da.projectPriorities["fnb-supply-chain"], 1);
   assert.equal(roleProfiles.da.projectPriorities["xom-bank"], 2);
+});
+
+test("the AI CV features VNStock first and excludes Xóm Bank", () => {
+  const tex = fs.readFileSync(path.join(__dirname, "..", "templates", "LeHoangGiaVi_CV_HV_AIE.tex"), "utf8");
+  assert.match(tex, /\\newcommand\{\\projectvnstock\}/);
+  const aiProjectsStart = tex.indexOf("    \\projectvnstock");
+  const aiProjectsEnd = tex.indexOf("  }%\n}", aiProjectsStart);
+  const aiProjects = tex.slice(aiProjectsStart, aiProjectsEnd);
+  assert.ok(aiProjectsStart >= 0, "Missing AI-specific project list");
+  assert.ok(aiProjectsEnd > aiProjectsStart, "AI-specific project list is incomplete");
+  assert.ok(aiProjects.indexOf("\\projectvnstock") < aiProjects.indexOf("\\projectdagpt"));
+  assert.ok(aiProjects.indexOf("\\projectdagpt") < aiProjects.indexOf("\\projectsmartclass"));
+  assert.ok(aiProjects.indexOf("\\projectsmartclass") < aiProjects.indexOf("\\projectfraud"));
+  assert.doesNotMatch(aiProjects, /\\projectxombank/);
 });
 
 test("the published page loads role data before its behavior and exposes all role controls", () => {
