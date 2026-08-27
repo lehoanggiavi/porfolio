@@ -61,17 +61,17 @@ test("project priorities reflect each role's strongest evidence", () => {
 });
 
 test("the AI CV features VNStock first and excludes Xóm Bank", () => {
-  const tex = fs.readFileSync(path.join(__dirname, "..", "templates", "LeHoangGiaVi_CV_HV_AIE.tex"), "utf8");
-  assert.match(tex, /\\newcommand\{\\projectvnstock\}/);
-  const aiProjectsStart = tex.indexOf("    \\projectvnstock");
-  const aiProjectsEnd = tex.indexOf("  }%\n}", aiProjectsStart);
-  const aiProjects = tex.slice(aiProjectsStart, aiProjectsEnd);
-  assert.ok(aiProjectsStart >= 0, "Missing AI-specific project list");
-  assert.ok(aiProjectsEnd > aiProjectsStart, "AI-specific project list is incomplete");
-  assert.ok(aiProjects.indexOf("\\projectvnstock") < aiProjects.indexOf("\\projectdagpt"));
-  assert.ok(aiProjects.indexOf("\\projectdagpt") < aiProjects.indexOf("\\projectsmartclass"));
-  assert.ok(aiProjects.indexOf("\\projectsmartclass") < aiProjects.indexOf("\\projectfraud"));
-  assert.doesNotMatch(aiProjects, /\\projectxombank/);
+  const tex = fs.readFileSync(
+    path.join(__dirname, "..", "templates", "cv_follow_jd", "LeHoangGiaVi_CV_AI_Engineer.tex"),
+    "utf8",
+  );
+  const vnstock = tex.indexOf("\\projectentry{VNSTOCK AI ANALYST}");
+  const dagpt = tex.indexOf("\\projectentry{DAGPT}");
+  const smartClass = tex.indexOf("\\projectentry{SMART CLASS");
+  const fraud = tex.indexOf("\\projectentry{CREDIT CARD FRAUD DETECTION}");
+  assert.ok(vnstock >= 0, "Missing VNStock project");
+  assert.ok(vnstock < dagpt && dagpt < smartClass && smartClass < fraud);
+  assert.doesNotMatch(tex, /X[ÓÃ]M BANK/);
 });
 
 test("the published page loads role data before its behavior and exposes all role controls", () => {
@@ -99,15 +99,22 @@ test("the published page loads role data before its behavior and exposes all rol
 });
 
 test("each CV deep-links its Portfolio hyperlink to the matching role", () => {
-  const template = fs.readFileSync(
-    path.join(__dirname, "..", "templates", "LeHoangGiaVi_CV_HV_AIE.tex"),
-    "utf8",
-  );
+  const templates = {
+    ai: "LeHoangGiaVi_CV_AI_Engineer.tex",
+    ds: "LeHoangGiaVi_CV_Data_Scientist.tex",
+    da: "LeHoangGiaVi_CV_Data_Analyst.tex",
+  };
 
-  assert.match(template, /\\newcommand\{\\cvportfoliohref\}\{https:\/\/lehoanggiavi\.github\.io\/portfolio\/\?role=ai\}/);
-  assert.match(template, /\\renewcommand\{\\cvportfoliohref\}\{https:\/\/lehoanggiavi\.github\.io\/portfolio\/\?role=ds\}/);
-  assert.match(template, /\\renewcommand\{\\cvportfoliohref\}\{https:\/\/lehoanggiavi\.github\.io\/portfolio\/\?role=da\}/);
-  assert.match(template, /\\cvlink\{\\cvportfoliohref\}\{Portfolio\}/);
+  Object.entries(templates).forEach(([role, file]) => {
+    const template = fs.readFileSync(
+      path.join(__dirname, "..", "templates", "cv_follow_jd", file),
+      "utf8",
+    );
+    assert.match(
+      template,
+      new RegExp(`https://lehoanggiavi\\.github\\.io/portfolio/\\?role=${role}`),
+    );
+  });
 });
 
 test("every role points to a published CV PDF", () => {
