@@ -10,6 +10,7 @@ const roleDisplayNames = {
   ai: { en: "AI ENGINEER", vi: "KỸ SƯ AI" },
   ds: { en: "DATA SCIENTIST", vi: "NHÀ KHOA HỌC DỮ LIỆU" },
   da: { en: "DATA ANALYST", vi: "CHUYÊN VIÊN PHÂN TÍCH DỮ LIỆU" },
+  de: { en: "DATA ENGINEER", vi: "KỸ SƯ DỮ LIỆU" },
 };
 
 function getInitialRole() {
@@ -294,6 +295,20 @@ function setTags(container, tags) {
   }));
 }
 
+function updateRoleProjectCards(copy) {
+  if (!roleContentReady) return;
+
+  repoCards.forEach((card) => {
+    const description = $(".repo-card-body p", card);
+    if (!description) return;
+
+    const defaultText = currentLanguage === "vi"
+      ? card.dataset.defaultDescriptionVi
+      : card.dataset.defaultDescriptionEn;
+    description.textContent = copy.projects.descriptions?.[card.dataset.projectId] || defaultText || description.textContent;
+  });
+}
+
 function updateRoleProjectOrder(profile) {
   if (!roleContentReady || !repoTrack) return;
 
@@ -398,6 +413,7 @@ function applyRoleContent(role = currentRole) {
   });
 
   updateRoleButtons();
+  updateRoleProjectCards(copy);
   updateRoleProjectOrder(profile);
 }
 
@@ -433,9 +449,9 @@ function setLanguage(language) {
   }
 }
 
+let savedLanguage;
 try {
-  const savedLanguage = window.localStorage.getItem("portfolio-language");
-  if (savedLanguage === "vi") setLanguage("vi");
+  savedLanguage = window.localStorage.getItem("portfolio-language");
 } catch (error) {
   console.warn("Unable to load language preference:", error);
 }
@@ -794,6 +810,16 @@ const repoViewport = $("#repoViewport");
 const repoPrev = $("#repoPrev");
 const repoNext = $("#repoNext");
 
+repoCards.forEach((card) => {
+  const description = $(".repo-card-body p", card);
+  if (!description) return;
+  card.dataset.defaultDescriptionEn = description.textContent.trim();
+  card.dataset.defaultDescriptionVi = languagePairs.reduce(
+    (value, [en, vi]) => value.replace(new RegExp(textPattern(en), "g"), vi),
+    description.textContent.trim(),
+  );
+});
+
 if (repoTrack) {
   repoCards
     .sort((a, b) => Number(a.dataset.priority) - Number(b.dataset.priority))
@@ -921,7 +947,8 @@ window.addEventListener("load", () => updateRepoCarousel({ animate: false }), { 
 applyRepoFilter(repoActiveFilter);
 
 roleContentReady = true;
-applyRoleContent(currentRole);
+if (savedLanguage === "vi") setLanguage("vi");
+else applyRoleContent(currentRole);
 updateLanguageAttributes(currentLanguage);
 
 /* Neural network canvas */

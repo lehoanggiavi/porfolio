@@ -1,10 +1,10 @@
 # CV follow-JD workflow
 
-This folder contains the three canonical one-page CVs and the analysis record used to tailor a CV to a specific job description (JD).
+This folder contains the canonical one-page CVs and the analysis record used to tailor a CV to a specific job description (JD).
 
 ## Source of truth
 
-- Canonical role CVs: `LeHoangGiaVi_CV_AI_Engineer.tex`, `LeHoangGiaVi_CV_Data_Scientist.tex`, and `LeHoangGiaVi_CV_Data_Analyst.tex`.
+- Canonical role CVs: `LeHoangGiaVi_CV_AI_Engineer.tex`, `LeHoangGiaVi_CV_Data_Scientist.tex`, `LeHoangGiaVi_CV_Data_Analyst.tex`, and `LeHoangGiaVi_CV_Data_Engineer.tex`.
 - Portfolio and repositories may be used only to verify or shorten claims already supported by the underlying work.
 - A technology, skill, responsibility, metric, title, date, publication status, or certification must not be added unless it can be verified from the canonical CV or an inspected project source.
 - A missing JD requirement is recorded as `Missing`; it is never converted into a CV claim.
@@ -14,6 +14,7 @@ This folder contains the three canonical one-page CVs and the analysis record us
 - `LeHoangGiaVi_CV_AI_Engineer.tex`: one-page AI Engineer CV.
 - `LeHoangGiaVi_CV_Data_Scientist.tex`: one-page Data Scientist CV.
 - `LeHoangGiaVi_CV_Data_Analyst.tex`: one-page Data Analyst CV.
+- `LeHoangGiaVi_CV_Data_Engineer.tex`: one-page Data Engineer CV.
 - `JD_ANALYSIS_TEMPLATE.md`: copy this file for every JD and complete the evidence matrix before editing the CV.
 
 ## Tailoring process
@@ -48,4 +49,5 @@ From this directory:
 xelatex -interaction=nonstopmode -halt-on-error LeHoangGiaVi_CV_AI_Engineer.tex
 xelatex -interaction=nonstopmode -halt-on-error LeHoangGiaVi_CV_Data_Scientist.tex
 xelatex -interaction=nonstopmode -halt-on-error LeHoangGiaVi_CV_Data_Analyst.tex
+xelatex -interaction=nonstopmode -halt-on-error LeHoangGiaVi_CV_Data_Engineer.tex
 ```

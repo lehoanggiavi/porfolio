@@ -64,6 +64,12 @@ const roleProfiles = {
           heading: ["Selected work showing how I", "build AI systems."],
           title: "Selected AI systems",
           subtitle: "The first three projects are the strongest examples from my CV. Use the arrows to explore more AI, data and research repositories.",
+          descriptions: {
+            "vnstock-ai": "Implemented an LLM/RAG workflow for VN30 analysis, wiring financial data, news and reports into retrieval-based responses for repeatable stock research.",
+            dagpt: "Built a Streamlit LLM data assistant that connects CSV ingestion, natural-language querying and interactive chart outputs in one analysis workflow.",
+            "smart-class": "Built a real-time computer-vision pipeline for classroom monitoring, reaching 90% emotion-classification and 95% identity-recognition accuracy on the project dataset.",
+            "fraud-detection": "Engineered an imbalanced-data modeling pipeline with Bi-LSTM and SMOTE-ENN, reaching AUC 0.990 and Recall 0.953 on card-transaction data.",
+          },
         },
         contact: {
           heading: ["Let's build useful", "AI solutions."],
@@ -123,6 +129,12 @@ const roleProfiles = {
           heading: ["Một số dự án cho thấy cách tôi", "xây dựng hệ thống AI."],
           title: "Hệ thống AI tiêu biểu",
           subtitle: "Ba dự án đầu là ví dụ nổi bật nhất từ CV của tôi. Dùng mũi tên để xem thêm các kho mã nguồn AI, dữ liệu và nghiên cứu.",
+          descriptions: {
+            "vnstock-ai": "Triển khai workflow LLM/RAG cho phân tích VN30, kết nối dữ liệu tài chính, tin tức và báo cáo vào phản hồi dựa trên truy xuất.",
+            dagpt: "Xây dựng trợ lý dữ liệu LLM bằng Streamlit, kết nối nhập CSV, truy vấn ngôn ngữ tự nhiên và biểu đồ tương tác trong một luồng phân tích.",
+            "smart-class": "Xây dựng pipeline thị giác máy tính thời gian thực cho giám sát lớp học, đạt 90% phân loại cảm xúc và 95% nhận diện danh tính trên bộ dữ liệu dự án.",
+            "fraud-detection": "Thiết kế pipeline mô hình hóa dữ liệu mất cân bằng với Bi-LSTM và SMOTE-ENN, đạt AUC 0.990 và Recall 0.953 trên dữ liệu giao dịch thẻ.",
+          },
         },
         contact: {
           heading: ["Hãy cùng xây dựng", "giải pháp AI hữu ích."],
@@ -200,6 +212,12 @@ const roleProfiles = {
           heading: ["Selected work in", "modeling and analytics."],
           title: "Selected data science work",
           subtitle: "Projects are ordered around the strongest evidence for modeling, evaluation, analytical workflows and data products.",
+          descriptions: {
+            "fraud-detection": "Modeled highly imbalanced card-transaction data with Bi-LSTM and SMOTE-ENN, reaching AUC 0.990 and Recall 0.953 after imbalance handling.",
+            "xom-bank": "Prepared 157K+ banking transactions and 2K+ customer profiles, passed 19/19 quality checks and applied K-Means for customer segmentation.",
+            dagpt: "Built a Streamlit data assistant for exploratory analysis, turning uploaded CSVs and natural-language questions into repeatable analyses and charts.",
+            "smart-class": "Evaluated emotion-classification and identity-recognition models on the project dataset, reaching 90% and 95% accuracy for classroom-monitoring use.",
+          },
         },
         contact: {
           heading: ["Let's turn data into", "useful decisions."],
@@ -259,6 +277,12 @@ const roleProfiles = {
           heading: ["Một số dự án về", "mô hình và phân tích."],
           title: "Dự án Khoa học Dữ liệu tiêu biểu",
           subtitle: "Dự án được sắp theo bằng chứng mạnh nhất về mô hình hóa, đánh giá, quy trình phân tích và sản phẩm dữ liệu.",
+          descriptions: {
+            "fraud-detection": "Mô hình hóa dữ liệu giao dịch thẻ mất cân bằng cao với Bi-LSTM và SMOTE-ENN, đạt AUC 0.990 và Recall 0.953 sau xử lý mất cân bằng.",
+            "xom-bank": "Chuẩn bị hơn 157 nghìn giao dịch ngân hàng và hơn 2 nghìn hồ sơ khách hàng, vượt 19/19 kiểm tra chất lượng và áp dụng K-Means để phân khúc khách hàng.",
+            dagpt: "Xây dựng trợ lý dữ liệu bằng Streamlit cho phân tích khám phá, chuyển CSV tải lên và câu hỏi ngôn ngữ tự nhiên thành phân tích và biểu đồ có thể lặp lại.",
+            "smart-class": "Đánh giá mô hình phân loại cảm xúc và nhận diện danh tính trên bộ dữ liệu dự án, đạt 90% và 95% độ chính xác cho bài toán giám sát lớp học.",
+          },
         },
         contact: {
           heading: ["Hãy biến dữ liệu thành", "quyết định hữu ích."],
@@ -336,6 +360,12 @@ const roleProfiles = {
           heading: ["Selected work in", "data and decision support."],
           title: "Selected analytics work",
           subtitle: "Projects are ordered around the strongest evidence for SQL analysis, data quality, BI and decision-support workflows.",
+          descriptions: {
+            "fmcg-multi-country-sales": "Analyzed 1.05M FMCG sales records across six countries to support planning priorities; the top 20% of SKUs generated 50.04% of net sales, with SQL Server and Power BI reconciled as a planning guardrail.",
+            "fnb-supply-chain": "Built a Power BI dashboard for supply-chain monitoring; validated 11 DAX KPIs including orders, gross margin and OTIF after EDA, data-quality checks and Power Query cleaning.",
+            "xom-bank": "Analyzed 157K+ banking transactions in SQL Server/Power BI, passed 19/19 data-quality checks and segmented 2K+ customer profiles for decision support.",
+            dagpt: "Delivered a self-service data assistant that turns uploaded CSVs and natural-language questions into analyses and interactive charts for faster exploration.",
+          },
         },
         contact: {
           heading: ["Let's make data", "easier to use."],
@@ -395,6 +425,12 @@ const roleProfiles = {
           heading: ["Một số dự án về", "dữ liệu và hỗ trợ quyết định."],
           title: "Dự án phân tích tiêu biểu",
           subtitle: "Dự án được sắp theo bằng chứng mạnh nhất về phân tích SQL, chất lượng dữ liệu, BI và quy trình hỗ trợ quyết định.",
+          descriptions: {
+            "fmcg-multi-country-sales": "Phân tích 1,05 triệu bản ghi FMCG tại sáu quốc gia để hỗ trợ ưu tiên lập kế hoạch; 20% SKU hàng đầu tạo ra 50,04% doanh thu thuần, với SQL Server và Power BI được đối soát làm planning guardrail.",
+            "fnb-supply-chain": "Xây dựng dashboard Power BI cho giám sát chuỗi cung ứng; xác thực 11 KPI DAX gồm đơn hàng, gross margin và OTIF sau EDA, kiểm tra chất lượng dữ liệu và làm sạch Power Query.",
+            "xom-bank": "Phân tích hơn 157 nghìn giao dịch ngân hàng trong SQL Server/Power BI, vượt 19/19 kiểm tra chất lượng dữ liệu và phân khúc hơn 2 nghìn hồ sơ khách hàng để hỗ trợ quyết định.",
+            dagpt: "Triển khai trợ lý dữ liệu self-service, chuyển CSV tải lên và câu hỏi ngôn ngữ tự nhiên thành phân tích và biểu đồ tương tác để khám phá nhanh hơn.",
+          },
         },
         contact: {
           heading: ["Hãy làm dữ liệu", "dễ sử dụng hơn."],
@@ -403,6 +439,154 @@ const roleProfiles = {
         footer: {
           description: "Làm dữ liệu cấu trúc trở nên đáng tin, dễ khám phá và hữu ích cho các quyết định thực tế.",
           status: "Sẵn sàng cho các cơ hội Data Analyst",
+        },
+      },
+    },
+  },
+  de: {
+    cvHref: "assets/Le_Hoang_Gia_Vi_CV_Data_Engineer.pdf",
+    projectPriorities: {
+      "fmcg-multi-country-sales": 2,
+      "fnb-supply-chain": 3,
+      "xom-bank": 1,
+      "smart-class": 9,
+      clen: 11,
+      dagpt: 5,
+      "cacao-shield": 10,
+      "fraud-detection": 4,
+      "parking-slot": 8,
+      "heart-disease": 7,
+      "vnstock-ai": 6,
+    },
+    copy: {
+      en: {
+        meta: {
+          title: "Le Hoang Gia Vi | Data Engineer",
+          description: "Le Hoang Gia Vi — Data Engineer portfolio with SQL, data warehousing, data quality, banking analytics and AWS data pipelines.",
+        },
+        hero: {
+          eyebrow: "DATA ENGINEERING · SQL · CLOUD DATA PIPELINES",
+          titlePrimary: "Building reliable data foundations",
+          titleSecondary: "for analytics and ML.",
+          roleLabel: "Le Hoang Gia Vi — Fresher Data Engineer",
+          description: "Final-year Data Science student with hands-on work in <strong>SQL, data warehousing, data quality, banking analytics and AWS data pipelines</strong>. I build data flows that are easier to validate, store and use for reporting or machine learning.",
+          primaryAction: "Explore Data Engineering Work",
+          status: "Open to Fresher Data Engineer opportunities",
+          technologies: [
+            ["simple-icons:python", "Python"],
+            ["simple-icons:postgresql", "SQL"],
+            ["lucide:database", "SQL Server"],
+            ["simple-icons:amazonaws", "AWS"],
+            ["lucide:workflow", "ETL/ELT"],
+            ["simple-icons:mongodb", "MongoDB"],
+          ],
+        },
+        about: {
+          heading: ["From raw data to", "trusted data pipelines."],
+          paragraphs: [
+            "I am a final-year <strong>Data Science</strong> student with project and internship experience across SQL analytics, data warehousing, AWS data services, data-quality checks and finance/banking datasets.",
+            "I focus on practical data engineering work: understand the source, validate the numbers, build a clear pipeline and make the output useful for analysts, reports or ML workflows.",
+          ],
+          points: [
+            ["SQL & data modeling", "Structured data querying, warehouse-style modeling and validation for dependable analytics."],
+            ["Data quality & automation", "Checks, reconciliation and repeatable pipelines that reduce manual data handling errors."],
+            ["Cloud data delivery", "AWS Lambda, Kinesis, Firehose, S3 and SageMaker flows for data-driven applications."],
+          ],
+        },
+        expertise: {
+          kicker: "DATA ENGINEERING FOCUS",
+          heading: ["Skills for", "reliable data platforms."],
+          description: "I connect SQL, Python, cloud services and data-quality thinking to move data from source systems into useful analytical and ML-ready outputs.",
+          cards: [
+            ["SQL, Warehousing & Modeling", "Build structured analysis layers with SQL Server, star schemas and validated Power BI outputs.", ["SQL", "SQL Server", "Star Schema", "Power BI"]],
+            ["Python ETL & Data Quality", "Prepare, transform and check data with Python, Pandas and reproducible validation steps.", ["Python", "Pandas", "NumPy", "Data Checks"]],
+            ["Cloud Data Pipelines", "Build cloud-backed data flows using AWS services for ingestion, processing, alerts and storage.", ["AWS Lambda", "Kinesis", "Firehose", "S3"]],
+          ],
+        },
+        projects: {
+          kicker: "FEATURED DATA ENGINEERING WORK",
+          heading: ["Selected work in", "pipelines and data platforms."],
+          title: "Selected data engineering work",
+          subtitle: "Projects are ordered around the strongest evidence for banking data, SQL pipelines, warehouse modeling, data quality and cloud data delivery.",
+          descriptions: {
+            "xom-bank": "Built a SQL-to-Power BI data pipeline over 157K+ banking transactions, added 19/19 quality checks and prepared 2K+ customer profiles for segmentation.",
+            "fmcg-multi-country-sales": "Processed 1.05M sales records across six countries, reconciled SQL Server and Power BI outputs and benchmarked XGBoost at 26.97% test WAPE.",
+            "fnb-supply-chain": "Prepared order/inventory data with Pandas EDA, Power Query cleaning and quality checks; modeled the dataset and validated 11 DAX/Power BI KPIs.",
+            "fraud-detection": "Built an imbalanced financial-transaction modeling pipeline with SMOTE-ENN preprocessing and Bi-LSTM training, reaching AUC 0.990 and Recall 0.953.",
+          },
+        },
+        contact: {
+          heading: ["Let's build trusted", "data foundations."],
+          description: "I am currently seeking a Data Engineer role where I can contribute to SQL pipelines, data quality, cloud data services and analytics-ready data platforms.",
+        },
+        footer: {
+          description: "Building reliable data flows for analytics, reporting and machine-learning use cases.",
+          status: "Available for Data Engineer opportunities",
+        },
+      },
+      vi: {
+        meta: {
+          title: "Le Hoang Gia Vi | Kỹ sư Dữ liệu",
+          description: "Portfolio Kỹ sư Dữ liệu của Le Hoang Gia Vi với SQL, kho dữ liệu, chất lượng dữ liệu, phân tích ngân hàng và pipeline dữ liệu AWS.",
+        },
+        hero: {
+          eyebrow: "KỸ THUẬT DỮ LIỆU · SQL · PIPELINE DỮ LIỆU ĐÁM MÂY",
+          titlePrimary: "Xây dựng nền tảng dữ liệu đáng tin",
+          titleSecondary: "cho phân tích và ML.",
+          roleLabel: "Le Hoang Gia Vi — Data Engineer Fresher",
+          description: "Sinh viên năm cuối ngành Khoa học Dữ liệu với kinh nghiệm thực hành về <strong>SQL, kho dữ liệu, chất lượng dữ liệu, phân tích ngân hàng và pipeline dữ liệu AWS</strong>. Tôi xây dựng luồng dữ liệu dễ kiểm tra, lưu trữ và sử dụng cho báo cáo hoặc học máy.",
+          primaryAction: "Khám phá dự án Kỹ thuật Dữ liệu",
+          status: "Sẵn sàng cho các vị trí Data Engineer Fresher",
+          technologies: [
+            ["simple-icons:python", "Python"],
+            ["simple-icons:postgresql", "SQL"],
+            ["lucide:database", "SQL Server"],
+            ["simple-icons:amazonaws", "AWS"],
+            ["lucide:workflow", "ETL/ELT"],
+            ["simple-icons:mongodb", "MongoDB"],
+          ],
+        },
+        about: {
+          heading: ["Từ dữ liệu thô đến", "pipeline đáng tin."],
+          paragraphs: [
+            "Tôi là sinh viên năm cuối ngành <strong>Khoa học Dữ liệu</strong>, có kinh nghiệm qua dự án và thực tập về phân tích SQL, kho dữ liệu, dịch vụ dữ liệu AWS, kiểm tra chất lượng dữ liệu và bộ dữ liệu tài chính/ngân hàng.",
+            "Tôi tập trung vào kỹ thuật dữ liệu thực tiễn: hiểu nguồn dữ liệu, kiểm tra số liệu, xây dựng pipeline rõ ràng và tạo đầu ra hữu ích cho analyst, báo cáo hoặc quy trình ML.",
+          ],
+          points: [
+            ["SQL & mô hình dữ liệu", "Truy vấn dữ liệu cấu trúc, mô hình dạng kho dữ liệu và kiểm tra để hỗ trợ phân tích đáng tin."],
+            ["Chất lượng dữ liệu & tự động hóa", "Kiểm tra, đối soát và pipeline lặp lại được để giảm lỗi xử lý dữ liệu thủ công."],
+            ["Triển khai dữ liệu đám mây", "Luồng AWS Lambda, Kinesis, Firehose, S3 và SageMaker cho ứng dụng dựa trên dữ liệu."],
+          ],
+        },
+        expertise: {
+          kicker: "TRỌNG TÂM KỸ THUẬT DỮ LIỆU",
+          heading: ["Kỹ năng cho", "nền tảng dữ liệu đáng tin."],
+          description: "Tôi kết nối SQL, Python, dịch vụ đám mây và tư duy chất lượng dữ liệu để đưa dữ liệu từ nguồn vào đầu ra sẵn sàng cho phân tích và ML.",
+          cards: [
+            ["SQL, kho dữ liệu & mô hình", "Xây dựng lớp phân tích có cấu trúc với SQL Server, star schema và đầu ra Power BI đã kiểm tra.", ["SQL", "SQL Server", "Star Schema", "Power BI"]],
+            ["ETL Python & chất lượng dữ liệu", "Chuẩn bị, chuyển đổi và kiểm tra dữ liệu bằng Python, Pandas và các bước xác thực có thể tái lập.", ["Python", "Pandas", "NumPy", "Data Checks"]],
+            ["Pipeline dữ liệu đám mây", "Xây dựng luồng dữ liệu trên đám mây bằng dịch vụ AWS cho nhập dữ liệu, xử lý, cảnh báo và lưu trữ.", ["AWS Lambda", "Kinesis", "Firehose", "S3"]],
+          ],
+        },
+        projects: {
+          kicker: "DỰ ÁN KỸ THUẬT DỮ LIỆU TIÊU BIỂU",
+          heading: ["Một số dự án về", "pipeline và nền tảng dữ liệu."],
+          title: "Dự án Kỹ thuật Dữ liệu tiêu biểu",
+          subtitle: "Dự án được sắp theo bằng chứng mạnh nhất về dữ liệu ngân hàng, pipeline SQL, mô hình kho dữ liệu, chất lượng dữ liệu và triển khai dữ liệu đám mây.",
+          descriptions: {
+            "xom-bank": "Xây dựng pipeline dữ liệu SQL-to-Power BI trên hơn 157 nghìn giao dịch ngân hàng, thêm 19/19 kiểm tra chất lượng và chuẩn bị hơn 2 nghìn hồ sơ khách hàng để phân khúc.",
+            "fmcg-multi-country-sales": "Xử lý 1,05 triệu bản ghi bán hàng tại sáu quốc gia, đối soát đầu ra SQL Server/Power BI và benchmark XGBoost ở mức WAPE kiểm thử 26,97%.",
+            "fnb-supply-chain": "Chuẩn bị dữ liệu đơn hàng/tồn kho bằng Pandas EDA, làm sạch Power Query và kiểm tra chất lượng; mô hình hóa dataset và xác thực 11 KPI DAX/Power BI.",
+            "fraud-detection": "Xây dựng pipeline mô hình hóa giao dịch tài chính mất cân bằng với tiền xử lý SMOTE-ENN và Bi-LSTM, đạt AUC 0.990 và Recall 0.953.",
+          },
+        },
+        contact: {
+          heading: ["Hãy xây dựng nền tảng", "dữ liệu đáng tin."],
+          description: "Tôi hiện tìm kiếm vị trí Data Engineer để đóng góp vào pipeline SQL, chất lượng dữ liệu, dịch vụ dữ liệu đám mây và nền tảng dữ liệu sẵn sàng cho phân tích.",
+        },
+        footer: {
+          description: "Xây dựng luồng dữ liệu đáng tin cho phân tích, báo cáo và ứng dụng học máy.",
+          status: "Sẵn sàng cho các cơ hội Data Engineer",
         },
       },
     },

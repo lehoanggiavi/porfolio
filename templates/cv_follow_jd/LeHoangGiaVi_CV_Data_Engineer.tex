@@ -1,6 +1,6 @@
 % !TEX program = xelatex
-% One-page Data Analyst baseline for JD-specific tailoring.
-% Do not add unverified skills or claims. Record gaps in JD_ANALYSIS_TEMPLATE.md.
+% One-page Data Engineer baseline tailored toward Vikki Digital Bank JD.
+% Do not add unverified skills or claims. Record gaps in analysis_vikki_digital_bank_data_engineer.md.
 \documentclass[10pt,letterpaper]{article}
 
 \usepackage[letterpaper,top=0.42in,bottom=0.42in,left=0.72in,right=0.72in]{geometry}
@@ -30,7 +30,7 @@
   colorlinks=true,
   urlcolor=black,
   pdfauthor={Le Hoang Gia Vi},
-  pdftitle={Le Hoang Gia Vi --- Data Analyst CV Base}
+  pdftitle={Le Hoang Gia Vi --- Data Engineer CV Base}
 }
 
 \titleformat{\section}{\large\bfseries}{}{0pt}{}[\titlerule]
@@ -62,7 +62,7 @@
 
 \begin{center}
   {\fontsize{20}{22}\selectfont\bfseries LE HOANG GIA VI}\\[0.22em]
-  {\fontsize{17}{19}\selectfont\bfseries Data Analyst}\\[0.42em]
+  {\fontsize{17}{19}\selectfont\bfseries Data Engineer}\\[0.42em]
   {\small
   \faIcon{map-marker-alt}\hspace{0.2em}Thu Duc District
   \quad
@@ -72,56 +72,56 @@
   \quad
   \faIcon{github}\hspace{0.2em}\cvlink{https://github.com/lehoanggiavi}{GitHub}
   \quad
-  \faIcon{globe}\hspace{0.2em}\cvlink{https://lehoanggiavi.github.io/portfolio/?role=da}{Portfolio}}
+  \faIcon{globe}\hspace{0.2em}\cvlink{https://lehoanggiavi.github.io/portfolio/?role=de}{Portfolio}}
 \end{center}
 
 \cvsection{user}{SUMMARY}
 \normalsize
-Final-year Data Science student seeking a Data Analyst role. Applied experience in SQL analysis,
-data warehousing, Power BI and customer segmentation. I make complex data easier to validate,
-explore and use in decision-making.
+Final-year Data Science student seeking a Data Engineer role. Applied experience in SQL, data
+warehousing, data-quality checks, banking analytics and AWS data pipelines. I build reproducible
+data flows that support reporting, analytics and machine-learning use cases.
 
 \cvsection{tools}{TECHNICAL SKILLS}
 \begin{itemize}[leftmargin=1.55em,itemsep=0em,topsep=0em,parsep=0em]
-  \cvitem{\textbf{Programming \& Query:} SQL, Python, R.}
-  \cvitem{\textbf{Data Analysis:} Pandas, NumPy, exploratory analysis and customer segmentation.}
+  \cvitem{\textbf{Programming \& Query:} Python, SQL, R.}
+  \cvitem{\textbf{Data Engineering:} ETL/ELT concepts, data-quality checks, data reconciliation, feature pipelines.}
   \cvitem{\textbf{Data Warehousing \& BI:} SQL Server, star schema, Power BI, DAX.}
-  \cvitem{\textbf{Supporting ML:} Scikit-learn, XGBoost, LightGBM, K-Means.}
-  \cvitem{\textbf{Tools \& Delivery:} Git, MongoDB, Streamlit, AWS (SageMaker, Lambda, S3).}
+  \cvitem{\textbf{Cloud \& Storage:} AWS API Gateway, Lambda, Kinesis, Firehose, S3, SageMaker, MongoDB.}
+  \cvitem{\textbf{Analysis \& ML Support:} Pandas, NumPy, Scikit-learn, XGBoost, LightGBM, K-Means.}
 \end{itemize}
 
 \cvsection{briefcase}{EXPERIENCE}
+\cvjobentry{AWS}{Mar 2026 -- Jul 2026}{Cloud Engineer Intern}
+\begin{itemize}[leftmargin=1.75em,itemsep=0.10em,topsep=0.16em]
+  \item \normalsize \textbf{Pipeline:} Built an event-driven fraud flow with API Gateway, Lambda, Kinesis and SageMaker.
+  \item \normalsize \textbf{Storage:} Added Firehose-to-S3 prediction history and SNS alerts for downstream monitoring.
+  \item \normalsize \textbf{Model support:} Trained Random Forest features and deployed a SageMaker real-time endpoint.
+\end{itemize}
+\vspace{0.45em}
 \cvjobentry{Nano Factory}{Mar 2026 -- Present}{AI Engineer Intern}
 \begin{itemize}[leftmargin=1.75em,itemsep=0.10em,topsep=0.16em]
   \item \normalsize \textbf{Data/Model:} Fine-tuned YOLOX-tiny for seven WHO steps on 2,336 COCO images.
-  \item \normalsize \textbf{Active learning:} Proposed a collect--label--retrain loop for continuous model improvement.
+  \item \normalsize \textbf{Pipeline improvement:} Proposed a collect--label--retrain loop for continuous model improvement.
   \item \normalsize \textbf{Results:} AP50 85.0\%, AP@[0.50:0.95] 61.8\%, 5.91 ms/image, and 6/7 holdout matches.
-\end{itemize}
-\vspace{0.45em}
-\cvjobentry{AWS}{Mar 2026 -- Jul 2026}{Cloud Engineer Intern}
-\begin{itemize}[leftmargin=1.75em,itemsep=0.10em,topsep=0.16em]
-  \item \normalsize \textbf{Model:} Trained Random Forest and deployed a SageMaker real-time endpoint.
-  \item \normalsize \textbf{Pipeline:} Built API Gateway, Lambda, Kinesis, feature Lambda, and SageMaker fraud flow.
-  \item \normalsize \textbf{Operations:} Added SNS fraud alerts and Firehose-to-S3 prediction history.
 \end{itemize}
 
 \cvsection{book}{RESEARCH PAPERS}
 \begin{itemize}[leftmargin=1.45em,itemsep=0em,topsep=0em,parsep=0em,partopsep=0em]
+  \paperentry{Enhancing Fintech Fraud Detection Performance}{Le Hoang Gia Vi et al.}{AIFMA 2025, Accepted}
+  \paperentry{GeFNO for Flood Forecasting}{Vi Le et al.}{ICEISD 2026, Accepted}
   \paperentry{CacaoShield: AI Application to Identify Cocoa Diseases}{Le Vi et al.}{REV-ECIT 2025, Accepted}
   \paperentry{Safe Exam Browser Acceptance}{Le Hoang Gia Vi et al.}{Distance Education 2025, Accepted}
-  \paperentry{Enhancing Fintech Fraud Detection Performance}{Le Hoang Gia Vi et al.}{AIFMA 2025, Accepted}
   \paperentry{Custom Lightweight Emotion Net (CLEN)}{Le Hoang Gia Vi et al.}{FJCAI 2026, Accepted}
-  \paperentry{GeFNO for Flood Forecasting}{Vi Le et al.}{ICEISD 2026, Accepted}
 \end{itemize}
 
 \cvsection{briefcase}{PROJECTS}
-\projectentry{FMCG MULTI-COUNTRY SALES ANALYTICS}{Sep 2026}{Analyzed 1,048,575 sales records across six countries to support planning priorities: the top 20\% of SKUs generated 50.04\% of net sales; reconciled SQL Server and Power BI outputs as a planning guardrail.}{https://github.com/lehoanggiavi/FMCGMultiCountrySalesDataset}
+\projectentry{XÓM BANK --- Banking Analytics \& Segmentation}{Jul 2026}{Built a SQL-to-Power BI data pipeline over 157,224 banking transactions, added 19/19 quality checks and prepared 2,000+ customer profiles for segmentation.}{https://github.com/lehoanggiavi/Banking}
 \vspace{0.16em}
-\projectentry{F\&B SUPPLY CHAIN PERFORMANCE DASHBOARD}{Aug 2026}{Built a Power BI dashboard for supply-chain monitoring; validated 11 DAX KPIs across Overview, Product and Supplier views after EDA, data-quality checks and Power Query cleaning.}{https://github.com/lehoanggiavi/F-B-Supply-Chain}
+\projectentry{FMCG MULTI-COUNTRY SALES ANALYTICS}{Sep 2026}{Processed 1,048,575 sales records across six countries, reconciled SQL Server and Power BI outputs and benchmarked XGBoost at 26.97\% test WAPE.}{https://github.com/lehoanggiavi/FMCGMultiCountrySalesDataset}
 \vspace{0.16em}
-\projectentry{XÓM BANK --- Banking Analytics \& Segmentation}{Jul 2026}{Analyzed 157,224 banking transactions in SQL Server/Power BI, passed 19/19 data-quality checks and segmented 2,000+ customer profiles for decision support.}{https://github.com/lehoanggiavi/Banking}
+\projectentry{F\&B SUPPLY CHAIN PERFORMANCE DASHBOARD}{Aug 2026}{Prepared order/inventory data with Pandas EDA, Power Query cleaning and quality checks; modeled the dataset and validated 11 DAX/Power BI KPIs.}{https://github.com/lehoanggiavi/F-B-Supply-Chain}
 \vspace{0.16em}
-\projectentry{DAGPT}{Aug -- Sep 2025}{Delivered a self-service data assistant that turns uploaded CSVs and natural-language questions into analyses and interactive charts for faster exploration.}{https://github.com/lehoanggiavi/dagpt}
+\projectentry{CREDIT CARD FRAUD DETECTION}{Oct -- Nov 2025}{Built an imbalanced financial-transaction modeling pipeline with SMOTE-ENN preprocessing and Bi-LSTM training, reaching AUC 0.990 and Recall 0.953.}{https://github.com/lehoanggiavi/ccfd}
 
 \cvsection{graduation-cap}{EDUCATION \& CERTIFICATION}
 \begin{tabularx}{\textwidth}{@{}X>{\raggedleft\arraybackslash}p{1.52in}@{}}

@@ -5,7 +5,7 @@ const path = require("node:path");
 
 const roleProfiles = require("../role-profiles.js");
 
-const expectedRoles = ["ai", "ds", "da"];
+const expectedRoles = ["ai", "ds", "da", "de"];
 const expectedProjects = [
   "fmcg-multi-country-sales",
   "fnb-supply-chain",
@@ -20,7 +20,7 @@ const expectedProjects = [
   "vnstock-ai",
 ];
 
-test("defines exactly the three supported application roles", () => {
+test("defines exactly the four supported application roles", () => {
   assert.deepEqual(Object.keys(roleProfiles).sort(), expectedRoles.sort());
 });
 
@@ -60,6 +60,34 @@ test("project priorities reflect each role's strongest evidence", () => {
   assert.equal(roleProfiles.da.projectPriorities["fmcg-multi-country-sales"], 1);
   assert.equal(roleProfiles.da.projectPriorities["fnb-supply-chain"], 2);
   assert.equal(roleProfiles.da.projectPriorities["xom-bank"], 3);
+  assert.equal(roleProfiles.de.projectPriorities["xom-bank"], 1);
+  assert.equal(roleProfiles.de.projectPriorities["fmcg-multi-country-sales"], 2);
+  assert.equal(roleProfiles.de.projectPriorities["fnb-supply-chain"], 3);
+  assert.equal(roleProfiles.de.projectPriorities["fraud-detection"], 4);
+});
+
+test("role project descriptions match each role's positioning", () => {
+  assert.match(roleProfiles.ai.copy.en.projects.descriptions["vnstock-ai"], /LLM\/RAG workflow/);
+  assert.match(roleProfiles.ds.copy.en.projects.descriptions["fraud-detection"], /Modeled highly imbalanced/);
+  assert.match(roleProfiles.da.copy.en.projects.descriptions["fmcg-multi-country-sales"], /planning priorities/);
+  assert.match(roleProfiles.de.copy.en.projects.descriptions["xom-bank"], /SQL-to-Power BI data pipeline/);
+
+  Object.values(roleProfiles).forEach((profile) => {
+    ["en", "vi"].forEach((language) => {
+      assert.ok(Object.keys(profile.copy[language].projects.descriptions).length >= 4);
+    });
+  });
+});
+
+test("project descriptions cache defaults before applying saved language", () => {
+  const script = fs.readFileSync(path.join(__dirname, "..", "script.js"), "utf8");
+  const savedLanguageRead = script.indexOf("savedLanguage = window.localStorage.getItem");
+  const fallbackCache = script.indexOf("card.dataset.defaultDescriptionEn =");
+  const savedLanguageApplied = script.indexOf("if (savedLanguage === \"vi\") setLanguage(\"vi\")");
+
+  assert.ok(savedLanguageRead >= 0);
+  assert.ok(fallbackCache > savedLanguageRead);
+  assert.ok(savedLanguageApplied > fallbackCache);
 });
 
 test("the AI CV features VNStock first and excludes Xóm Bank", () => {
@@ -88,6 +116,22 @@ test("the DA CV leads with FMCG business insight and excludes fraud detection", 
   assert.match(tex, /top 20\\% of SKUs generated 50\.04\\% of net sales/);
   assert.match(tex, /planning guardrail/);
   assert.doesNotMatch(tex, /CREDIT CARD FRAUD DETECTION/);
+});
+
+test("the Data Engineer CV leads with banking data and AWS pipeline evidence", () => {
+  const tex = fs.readFileSync(
+    path.join(__dirname, "..", "templates", "cv_follow_jd", "LeHoangGiaVi_CV_Data_Engineer.tex"),
+    "utf8",
+  );
+  const xomBank = tex.indexOf("\\projectentry{XÓM BANK");
+  const fmcg = tex.indexOf("\\projectentry{FMCG MULTI-COUNTRY SALES ANALYTICS}");
+  const fnb = tex.indexOf("\\projectentry{F\\&B SUPPLY CHAIN PERFORMANCE DASHBOARD}");
+  const fraud = tex.indexOf("\\projectentry{CREDIT CARD FRAUD DETECTION}");
+
+  assert.ok(xomBank >= 0 && xomBank < fmcg && fmcg < fnb && fnb < fraud);
+  assert.match(tex, /API Gateway, Lambda, Kinesis and SageMaker/);
+  assert.match(tex, /Firehose-to-S3 prediction history/);
+  assert.doesNotMatch(tex, /PL\/SQL|Spark|Hadoop|Kafka|Flink|Airflow|Talend|SSIS/);
 });
 
 test("the published page loads role data before its behavior and exposes all role controls", () => {
@@ -126,6 +170,7 @@ test("each CV deep-links its Portfolio hyperlink to the matching role", () => {
     ai: "LeHoangGiaVi_CV_AI_Engineer.tex",
     ds: "LeHoangGiaVi_CV_Data_Scientist.tex",
     da: "LeHoangGiaVi_CV_Data_Analyst.tex",
+    de: "LeHoangGiaVi_CV_Data_Engineer.tex",
   };
 
   Object.entries(templates).forEach(([role, file]) => {
